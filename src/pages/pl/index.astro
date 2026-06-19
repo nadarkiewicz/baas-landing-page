@@ -1,0 +1,866 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const contactEmail = "piotr.nadarkiewicz@gmail.com";
+const bookingLink = `mailto:${contactEmail}?subject=BAaaS%20-%2030-minutowa%20rozmowa`;
+---
+
+<Layout
+  title="BAaaS — Doświadczona analiza biznesowa w modelu subskrypcji"
+  description="Stały dostęp do analityka biznesowego z tytułem MBA i ponad 17-letnim doświadczeniem w bankowości, IT, retailu i e-commerce."
+  lang="pl"
+>
+  <main>
+    <nav class="language-switch" aria-label="Przełącznik języka">
+      <a href="/" data-analytics-click="language_en">EN</a>
+      <a href="/pl/" aria-current="page" data-analytics-click="language_pl_current">PL</a>
+    </nav>
+
+    <section id="hero" data-section-name="Sekcja główna" class="section hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">BAaaS</p>
+          <h1>Doświadczona analiza biznesowa w modelu subskrypcji.</h1>
+          <p class="hero-lead">
+            Stały dostęp do jednego analityka biznesowego z tytułem MBA i ponad
+            17-letnim doświadczeniem w bankowości, IT, retailu i e-commerce —
+            na te miesiące, w których potrzebujesz wsparcia na poziomie seniora,
+            bez zatrudniania kolejnej osoby na etat.
+          </p>
+          <p class="subline">
+            Około 3 dni seniora w miesiącu · priorytetowy dostęp · niewykorzystany
+            czas nie przechodzi na kolejny miesiąc.
+          </p>
+
+          <div class="actions">
+            <a
+              class="button primary"
+              href={bookingLink}
+              data-analytics-click="book_scoping_call_hero_pl"
+            >
+              Umów 30-minutową rozmowę
+            </a>
+            <a
+              class="button secondary"
+              href="#pricing"
+              data-analytics-click="view_pricing_hero_pl"
+            >
+              Zobacz cennik
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Podsumowanie BAaaS">
+          <p class="card-label">Stała pojemność senior BA</p>
+          <ul>
+            <li>Analiza na poziomie principal / senior</li>
+            <li>Dokumenty, warsztaty i wsparcie decyzji</li>
+            <li>Dla zespołów delivery, produktu i portfela projektów</li>
+            <li>Subskrypcja miesięczna, nie rozliczenie godzinowe</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="problem" data-section-name="Brzmi znajomo?" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Brzmi znajomo?</p>
+          <h2>Prowadzisz delivery, portfel projektów albo produkt.</h2>
+        </div>
+
+        <div class="content-stack">
+          <p>
+            Twoi ludzie — od juniorów po seniorów — zbierają wymagania,
+            ustalają priorytety i rozmawiają z interesariuszami. Ale nikt
+            doświadczony nie bierze odpowiedzialności za analizę. Decyzje się
+            przeciągają. Dokumentacja zostaje z tyłu.
+          </p>
+
+          <p>
+            Nawet mocne osoby, których główna ekspertyza leży gdzie indziej,
+            potrzebują doświadczonego partnera do rozmowy.
+          </p>
+
+          <p>
+            Albo masz cele związane z rozwojem kompetencji. Potrzebujesz
+            praktycznej wiedzy analitycznej, która zostanie w firmie — a nie
+            kolejnego ogólnego szkolenia, po którym nic nie zostaje.
+          </p>
+
+          <p>
+            Tak czy inaczej, zatrudnienie principala BA na etat jest wolne,
+            drogie i większe, niż potrzebujesz co miesiąc.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" data-section-name="Rozwiązanie" class="section muted">
+      <div class="container">
+        <p class="eyebrow">Prostszy sposób</p>
+        <h2>Dostęp do doświadczonego analityka bez zatrudniania.</h2>
+
+        <div class="steps">
+          <article>
+            <span>1</span>
+            <h3>Wybierz pakiet.</h3>
+            <p>
+              Core, Pro albo Prime — ta sama usługa w trzech poziomach
+              priorytetu i zakresu.
+            </p>
+          </article>
+
+          <article>
+            <span>2</span>
+            <h3>Ustal miks na dany miesiąc.</h3>
+            <p>
+              W ramach około 3 dni pracy seniora dobieramy właściwą mieszankę:
+              dokument analityczny lub menedżerski, warsztat, doradztwo na
+              bieżąco, wsparcie decyzji i follow-up.
+            </p>
+          </article>
+
+          <article>
+            <span>3</span>
+            <h3>Wszystko zostaje u Ciebie.</h3>
+            <p>
+              Dokumenty, szablony i metody zostają w firmie. Wiedza nie znika,
+              gdy kończy się miesiąc.
+            </p>
+          </article>
+        </div>
+
+        <p class="wide-note">
+          Płacisz za stały dostęp, priorytet i pracę seniora — nie za godziny na
+          liczniku. Pojemność jest świadomie ograniczona, dzięki czemu jakość i
+          skupienie pozostają wysokie. Niewykorzystany czas nie przechodzi na
+          kolejny miesiąc — rezerwujemy tę pojemność dla Ciebie co miesiąc.
+        </p>
+      </div>
+    </section>
+
+    <section id="tiers" data-section-name="Pakiety" class="section">
+      <div class="container">
+        <p class="eyebrow">Trzy pakiety, jeden model</p>
+        <h2>Wybierz poziom dostępu, którego potrzebujesz.</h2>
+
+        <div class="pricing-grid">
+          <article class="tier">
+            <h3>Core</h3>
+            <p>
+              Uporządkowany dostęp do seniora, z bardziej standaryzowaną
+              dostawą przyspieszaną przez AI i nadzorowaną przez seniora.
+              Dłuższe czasy realizacji, głównie praca asynchroniczna.
+            </p>
+            <p class="tier-fit">
+              Dla zespołów, które chcą wsparcia seniora bez dostawy „na wczoraj”.
+            </p>
+          </article>
+
+          <article class="tier featured">
+            <p class="badge">Najczęstszy wybór</p>
+            <h3>Pro</h3>
+            <p>
+              Praktyczna równowaga dostępu, responsywności i wsparcia szytego
+              na miarę. Jasne poziomy obsługi, szerszy zakres dokumentów,
+              regularna dostępność.
+            </p>
+            <p class="tier-fit">
+              Dla zespołów, które potrzebują regularnego wsparcia seniora w
+              ciągu miesiąca.
+            </p>
+          </article>
+
+          <article class="tier">
+            <h3>Prime</h3>
+            <p>
+              Wyższy priorytet, bardziej dopasowane warsztaty, materiały pod
+              marką klienta tam, gdzie to pomaga, i możliwa kwartalna wizyta na
+              miejscu.
+            </p>
+            <p class="tier-fit">
+              Dla zespołów, które chcą bliskiego zaangażowania seniora.
+            </p>
+          </article>
+        </div>
+
+        <p class="wide-note">
+          We wszystkich trzech: około 3 dni pracy seniora w miesiącu, bez
+          przenoszenia na kolejny miesiąc, bez nieograniczonej dostępności.
+        </p>
+      </div>
+    </section>
+
+    <section id="included" data-section-name="Co jest w cenie" class="section muted">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Co jest w cenie</p>
+          <h2>Praktyczne wsparcie seniora, dobrane do danego miesiąca.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="check-list">
+            <li>
+              Jeden dokument analityczny lub menedżerski w miesiącu, w
+              uzgodnionym dniu.
+            </li>
+            <li>
+              Określona lista dokumentów, np. dokument wymagań / zakresu, mapa
+              procesu, dokument decyzyjny, rozbicie backlogu / epików, framework
+              priorytetyzacji albo pakiet warsztatowy.
+            </li>
+            <li>
+              Dostępność na bieżąco w godzinach pracy — w praktyce mniej więcej
+              dwa dni w tygodniu.
+            </li>
+            <li>
+              Sesja ad hoc 2 h w ciągu 48 godzin, zależnie od pakietu i kalendarza.
+            </li>
+            <li>
+              Sesja 4–6 h w ciągu 7 dni, zależnie od pakietu i kalendarza.
+            </li>
+            <li>
+              Warsztaty, facylitacja, wsparcie decyzji, szablony i follow-up —
+              dobrane do miesiąca i pakietu.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="not-included" data-section-name="Czego nie obejmuje" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Czego nie obejmuje</p>
+          <h2>Jasne granice, bez ukrytych oczekiwań.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="plain-list">
+            <li>Nieograniczonego wsparcia ani gwarancji natychmiastowej realizacji.</li>
+            <li>Przenoszenia niewykorzystanego czasu.</li>
+            <li>
+              Dużych, wielotygodniowych programów ani pracy ponad miesięczną
+              pojemność. Takie rzeczy są wyceniane osobno.
+            </li>
+            <li>
+              Podróży i pracy na miejscu. W Prime możliwa jest kwartalna wizyta;
+              koszty dojazdu i noclegu są po stronie klienta.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" data-section-name="Cennik" class="section dark">
+      <div class="container">
+        <p class="eyebrow">Cennik</p>
+        <h2>Prosta miesięczna subskrypcja. Cena za stały dostęp, nie za godziny.</h2>
+
+        <div class="price-row">
+          <article>
+            <h3>Core</h3>
+            <p class="price">od 14 400 zł / miesiąc + VAT</p>
+          </article>
+
+          <article>
+            <h3>Pro</h3>
+            <p class="price">od 17 500 zł / miesiąc + VAT</p>
+          </article>
+
+          <article>
+            <h3>Prime</h3>
+            <p class="price">od 22 000 zł / miesiąc + VAT</p>
+            <p>Albo wycena pod potrzeby.</p>
+          </article>
+        </div>
+
+        <p class="pricing-note">
+          Umowa miesięczna lub roczna z rabatem za zobowiązanie. VAT doliczany
+          tam, gdzie ma zastosowanie. Przy współpracy transgranicznej B2B zwykle
+          stosuje się odwrotne obciążenie.
+        </p>
+
+        <p class="pricing-note subtle">
+          Niewykorzystana pojemność nie przechodzi dalej — to cena za to, że
+          senior jest dla Ciebie gotowy co miesiąc.
+        </p>
+
+        <a
+          class="button light"
+          href={bookingLink}
+          data-analytics-click="book_scoping_call_pricing_pl"
+        >
+          Umów 30-minutową rozmowę
+        </a>
+      </div>
+    </section>
+
+    <section id="proof" data-section-name="Kto za tym stoi" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Kto za tym stoi</p>
+          <h2>Jeden analityk biznesowy na poziomie senior / principal.</h2>
+          <p>
+            MBA w obszarze innowacji i analizy danych. Ponad 17 lat
+            doświadczenia, w tym ponad 4 lata w bankowości i finansach
+            regulowanych.
+          </p>
+        </div>
+
+        <div class="proof-list">
+          <article>
+            <h3>Regulacja DORA</h3>
+            <p>
+              Przełożenie regulacji DORA na dokument reguł biznesowych
+              wykorzystany przez 35–50 product ownerów w portfelu produktowym
+              dużego banku.
+            </p>
+          </article>
+
+          <article>
+            <h3>Regulowana platforma telekomunikacyjna pod M&A</h3>
+            <p>
+              Praca principal BA pomogła ograniczyć przenoszenie prawie
+              ukończonych stories między sprintami z 10–20% do niemal zera i
+              zmniejszyć późne poprawki analityczne o około połowę.
+            </p>
+          </article>
+
+          <article>
+            <h3>Train KYC/AML</h3>
+            <p>
+              Koordynacja wymagań w obszarach onboardingu, monitoringu AML,
+              screeningu sankcyjnego i PEP oraz raportowania regulacyjnego.
+            </p>
+          </article>
+
+          <article>
+            <h3>Atrybucja CLV w retailu</h3>
+            <p>
+              Budowa modelu atrybucji wartości klienta w ujęciu omnichannel dla
+              dużego klienta retail i prezentacja podejścia na spotkaniu IAB.
+            </p>
+          </article>
+
+          <article>
+            <h3>Coaching i szkolenia</h3>
+            <p>
+              Coaching około 46 osób i przeszkolenie około 30 kolejnych z
+              analizy i pracy produktowej.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" data-section-name="Pytania" class="section muted">
+      <div class="container">
+        <p class="eyebrow">Pytania</p>
+        <h2>Najczęstsze pytania przed rozmową.</h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>Czy to po prostu trzy dni analityka w miesiącu w stawce dziennej?</summary>
+            <p>
+              Nie. To stały dostęp — priorytet, dostępność i praca seniora w
+              ciągu miesiąca — w formie subskrypcji. Wartością jest pewny
+              dostęp do seniora wtedy, gdy go potrzebujesz, a nie obniżona
+              stawka dzienna.
+            </p>
+          </details>
+
+          <details>
+            <summary>Co, jeśli w danym miesiącu nie wykorzystamy czasu?</summary>
+            <p>
+              Nie przechodzi dalej. Rezerwujesz sobie pojemność seniora, gotową,
+              gdy będzie potrzebna — jak w subskrypcji płacisz za dostęp w danym
+              okresie, nie za każdą zużytą minutę.
+            </p>
+          </details>
+
+          <details>
+            <summary>Czy możesz pracować w naszych godzinach?</summary>
+            <p>
+              Polskie godziny pracy pokrywają się niemal z całym dniem roboczym
+              w Wielkiej Brytanii i Europie, więc dostajesz wsparcie w czasie
+              rzeczywistym — z opcją pracy asynchronicznej, gdy tak jest
+              wygodniej.
+            </p>
+          </details>
+
+          <details>
+            <summary>Czy praca należy do nas?</summary>
+            <p>Tak. Dokumenty, szablony i metody zostają u Ciebie.</p>
+          </details>
+
+          <details>
+            <summary>Czy poradzisz sobie z pracą regulowaną lub wrażliwą?</summary>
+            <p>
+              Tak — doświadczenie obejmuje regulowaną bankowość, KYC/AML,
+              projektowanie ścieżki audytowej i regulacje odporności
+              operacyjnej. Klienci pozostają anonimowi domyślnie.
+            </p>
+          </details>
+
+          <details>
+            <summary>Czy korzystasz z AI?</summary>
+            <p>
+              Tak — do przyspieszonego przygotowania i szkicowania, zawsze z
+              nadzorem i odpowiedzialnością seniora. W niższych pakietach właśnie
+              dzięki temu dostawa pozostaje efektywna.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" data-section-name="Porozmawiajmy" class="section final-cta">
+      <div class="container">
+        <p class="eyebrow">Porozmawiajmy</p>
+        <h2>30-minutowa rozmowa to najszybszy sposób, by sprawdzić, czy to pasuje.</h2>
+        <p>Spojrzymy na to, gdzie jest luka, i który pakiet ma sens.</p>
+
+        <div class="actions">
+          <a
+            class="button primary"
+            href={bookingLink}
+            data-analytics-click="book_scoping_call_final_pl"
+          >
+            Umów 30-minutową rozmowę
+          </a>
+
+          <a
+            class="button secondary"
+            href={`mailto:${contactEmail}`}
+            data-analytics-click="email_contact_final_pl"
+          >
+            Napisz: {contactEmail}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg: #f6f2ea;
+    --surface: #ffffff;
+    --surface-muted: #efe8dc;
+    --text: #171717;
+    --muted: #5d5d5d;
+    --line: rgba(23, 23, 23, 0.12);
+    --dark: #171717;
+    --dark-muted: #bdbdbd;
+    --accent: #9a6a3a;
+    --accent-dark: #6f4825;
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at top left, rgba(154, 106, 58, 0.16), transparent 36rem),
+      var(--bg);
+  }
+
+  .language-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    display: flex;
+    gap: 8px;
+  }
+
+  .language-switch a {
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+  }
+
+  .language-switch a[aria-current="page"] {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .container {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 48px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin: 0 0 16px;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 820px;
+    margin-bottom: 24px;
+    font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.075em;
+  }
+
+  h2 {
+    max-width: 860px;
+    margin-bottom: 24px;
+    font-size: clamp(2.25rem, 5vw, 4.7rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+  }
+
+  h3 {
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  p,
+  li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .hero-lead {
+    max-width: 760px;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.55;
+  }
+
+  .subline {
+    max-width: 760px;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+      transform 160ms ease,
+      background 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button.primary {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .button.secondary {
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--text);
+  }
+
+  .button.light {
+    background: #fff;
+    color: var(--dark);
+  }
+
+  .hero-card,
+  .tier,
+  .list-card,
+  .proof-list article,
+  .steps article,
+  .price-row article {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 24px 80px rgba(23, 23, 23, 0.08);
+  }
+
+  .hero-card {
+    padding: 32px;
+  }
+
+  .card-label {
+    margin-bottom: 18px;
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .hero-card ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .hero-card li + li {
+    margin-top: 12px;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+  }
+
+  .content-stack p {
+    font-size: 1.15rem;
+  }
+
+  .muted {
+    background: rgba(239, 232, 220, 0.58);
+  }
+
+  .steps,
+  .pricing-grid,
+  .price-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 40px;
+  }
+
+  .steps article,
+  .tier,
+  .price-row article {
+    padding: 28px;
+  }
+
+  .steps span {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    background: var(--dark);
+    color: #fff;
+    font-weight: 900;
+  }
+
+  .wide-note {
+    max-width: 900px;
+    margin-top: 36px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .tier.featured {
+    border-color: rgba(154, 106, 58, 0.6);
+    background: #fff;
+  }
+
+  .badge {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 16px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(154, 106, 58, 0.12);
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 900;
+  }
+
+  .tier-fit {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .list-card {
+    padding: 30px;
+  }
+
+  .check-list,
+  .plain-list {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .check-list li + li,
+  .plain-list li + li {
+    margin-top: 14px;
+  }
+
+  .dark {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .dark .eyebrow,
+  .dark p,
+  .dark li {
+    color: var(--dark-muted);
+  }
+
+  .dark h2,
+  .dark h3 {
+    color: #fff;
+  }
+
+  .dark .price-row article {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+  }
+
+  .price {
+    color: #fff !important;
+    font-size: 1.35rem;
+    font-weight: 900;
+  }
+
+  .pricing-note {
+    max-width: 860px;
+    margin-top: 28px;
+  }
+
+  .pricing-note.subtle {
+    font-style: italic;
+  }
+
+  .proof-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .proof-list article {
+    padding: 24px;
+    box-shadow: none;
+  }
+
+  .faq-list {
+    max-width: 860px;
+    margin-top: 32px;
+  }
+
+  details {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-size: 1.15rem;
+    font-weight: 900;
+  }
+
+  details p {
+    margin: 16px 0 0;
+  }
+
+  .final-cta {
+    padding-bottom: 120px;
+  }
+
+  .final-cta p {
+    max-width: 680px;
+  }
+
+  @media (max-width: 860px) {
+    .section {
+      padding: 72px 0;
+    }
+
+    .hero-grid,
+    .two-column,
+    .steps,
+    .pricing-grid,
+    .price-row {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-card {
+      order: -1;
+      margin-top: 36px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .container {
+      width: min(100% - 24px, 1120px);
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    h1 {
+      font-size: clamp(2.85rem, 17vw, 4.2rem);
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+</style>

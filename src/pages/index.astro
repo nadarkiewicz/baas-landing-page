@@ -11,6 +11,11 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
   lang="en"
 >
   <main>
+    <nav class="language-switch" aria-label="Language switcher">
+      <a href="/" aria-current="page" data-analytics-click="language_en_current">EN</a>
+      <a href="/pl/" data-analytics-click="language_pl">PL</a>
+    </nav>
+
     <section id="hero" data-section-name="Hero" class="section hero">
       <div class="container hero-grid">
         <div>
@@ -186,9 +191,7 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
 
         <div class="list-card">
           <ul class="check-list">
-            <li>
-              One analytical or management document each month, on an agreed day.
-            </li>
+            <li>One analytical or management document each month, on an agreed day.</li>
             <li>
               Defined document types, such as a requirements brief, process map,
               decision paper, backlog breakdown, prioritisation framework or
@@ -401,9 +404,7 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
       <div class="container">
         <p class="eyebrow">Ready to talk?</p>
         <h2>A 30-minute scoping call is the quickest way to see if this fits.</h2>
-        <p>
-          We will look at where the gap is and which tier makes sense.
-        </p>
+        <p>We will look at where the gap is and which tier makes sense.</p>
 
         <div class="actions">
           <a
@@ -452,6 +453,10 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
     background:
@@ -459,8 +464,30 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
       var(--bg);
   }
 
-  html {
-    scroll-behavior: smooth;
+  .language-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    display: flex;
+    gap: 8px;
+  }
+
+  .language-switch a {
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+  }
+
+  .language-switch a[aria-current="page"] {
+    background: var(--dark);
+    color: #fff;
   }
 
   .section {
@@ -799,6 +826,7 @@ const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%
 
     .hero-card {
       order: -1;
+      margin-top: 36px;
     }
   }
 
