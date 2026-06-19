@@ -1,102 +1,451 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BAaaS Landing Page</title>
-    <meta
-      name="description"
-      content="A simple landing page for BAaaS."
-    />
-  </head>
+---
+import Layout from "../layouts/Layout.astro";
 
-  <body>
-    <main>
-      <section id="hero" class="hero">
-        <p class="eyebrow">BAaaS</p>
-        <h1>Build your business backend faster.</h1>
-        <p class="lead">
-          A simple landing page test for the BAaaS project. We will replace this
-          text with the real offer, benefits, and call to action.
+const contactEmail = "piotr.nadarkiewicz@gmail.com";
+const bookingLink = `mailto:${contactEmail}?subject=BAaaS%2030-minute%20scoping%20call`;
+---
+
+<Layout
+  title="BAaaS — Senior business analysis, on subscription"
+  description="Retained access to one MBA-level business analyst with 17+ years across banking, software, retail and e-commerce."
+  lang="en"
+>
+  <main>
+    <section id="hero" data-section-name="Hero" class="section hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">BAaaS</p>
+          <h1>Senior business analysis, on subscription.</h1>
+          <p class="hero-lead">
+            Retained access to one MBA-level business analyst with 17+ years
+            across banking, software, retail and e-commerce — for the months you
+            need senior firepower, without recruiting a full-time hire.
+          </p>
+          <p class="subline">
+            ~3 senior days a month · priority access · no rollover, no surprises.
+          </p>
+
+          <div class="actions">
+            <a
+              class="button primary"
+              href={bookingLink}
+              data-analytics-click="book_scoping_call_hero"
+            >
+              Book a 30-minute scoping call
+            </a>
+            <a
+              class="button secondary"
+              href="#pricing"
+              data-analytics-click="view_pricing_hero"
+            >
+              View pricing
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="BAaaS summary">
+          <p class="card-label">Retained senior BA capacity</p>
+          <ul>
+            <li>Principal-level analysis</li>
+            <li>Documents, workshops and decision support</li>
+            <li>Built for delivery, product and portfolio teams</li>
+            <li>Monthly subscription, not hourly billing</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="problem" data-section-name="Sound familiar?" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Sound familiar?</p>
+          <h2>You run delivery, portfolio or product work.</h2>
+        </div>
+
+        <div class="content-stack">
+          <p>
+            Your people — junior to senior — handle requirements, prioritisation
+            and stakeholder calls. But no one senior owns the analysis.
+            Decisions stall. Documentation slips. Even strong people whose
+            expertise sits elsewhere need a senior sparring partner.
+          </p>
+
+          <p>
+            Or you carry capability and upskilling targets. You need practical
+            business-analysis skill to grow inside the company — not another
+            generic training day that leaves nothing behind.
+          </p>
+
+          <p>
+            Either way, hiring a full-time principal BA is slow, expensive, and
+            more than you need every month.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" data-section-name="Solution" class="section muted">
+      <div class="container">
+        <p class="eyebrow">A simpler way</p>
+        <h2>Get senior BA capacity without hiring.</h2>
+
+        <div class="steps">
+          <article>
+            <span>1</span>
+            <h3>Pick a tier.</h3>
+            <p>
+              Core, Pro or Prime — same service, three levels of priority and
+              scope.
+            </p>
+          </article>
+
+          <article>
+            <span>2</span>
+            <h3>Agree the month’s mix.</h3>
+            <p>
+              Within ~3 retained senior days, we shape the right blend: an
+              analytical or management document, a workshop, on-call advisory,
+              decision support and follow-up.
+            </p>
+          </article>
+
+          <article>
+            <span>3</span>
+            <h3>Keep everything.</h3>
+            <p>
+              Documents, templates and methods stay inside your company. The
+              knowledge does not walk out when the month ends.
+            </p>
+          </article>
+        </div>
+
+        <p class="wide-note">
+          You are paying for retained access, priority and senior delivery —
+          not for hours on a clock. Capacity is deliberately limited, so quality
+          and focus stay high. Unused time does not roll over; we hold the
+          capacity for you each month.
         </p>
+      </div>
+    </section>
+
+    <section id="tiers" data-section-name="Tiers" class="section">
+      <div class="container">
+        <p class="eyebrow">Three tiers, one model</p>
+        <h2>Choose the level of access you need.</h2>
+
+        <div class="pricing-grid">
+          <article class="tier">
+            <h3>Core</h3>
+            <p>
+              Structured senior access with more standardised, AI-accelerated
+              senior-reviewed delivery. Longer lead times, mostly asynchronous.
+            </p>
+            <p class="tier-fit">
+              For teams that want senior input without bespoke turnaround.
+            </p>
+          </article>
+
+          <article class="tier featured">
+            <p class="badge">Common choice</p>
+            <h3>Pro</h3>
+            <p>
+              A practical balance of access, responsiveness and tailored
+              support. Clear service levels, a broader document range, regular
+              availability.
+            </p>
+            <p class="tier-fit">
+              For teams that need reliable senior support across the month.
+            </p>
+          </article>
+
+          <article class="tier">
+            <h3>Prime</h3>
+            <p>
+              Stronger priority, more tailored workshops, client-branded
+              materials where it helps, and a possible quarterly on-site visit.
+            </p>
+            <p class="tier-fit">
+              For teams that want close, senior involvement.
+            </p>
+          </article>
+        </div>
+
+        <p class="wide-note">
+          Across all three: ~3 retained senior days a month, no rollover, no
+          unlimited availability.
+        </p>
+      </div>
+    </section>
+
+    <section id="included" data-section-name="What's included" class="section muted">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">What’s included</p>
+          <h2>Practical senior support, shaped around the month.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="check-list">
+            <li>
+              One analytical or management document each month, on an agreed day.
+            </li>
+            <li>
+              Defined document types, such as a requirements brief, process map,
+              decision paper, backlog breakdown, prioritisation framework or
+              workshop pack.
+            </li>
+            <li>
+              On-call availability during business hours, interpreted as roughly
+              two days a week.
+            </li>
+            <li>
+              An ad hoc 2-hour session within 48 hours, tier-dependent and
+              subject to scheduling.
+            </li>
+            <li>
+              A 4–6 hour session within 7 days, tier-dependent and subject to
+              scheduling.
+            </li>
+            <li>
+              Workshops, facilitation, decision support, templates and follow-up,
+              blended to fit the month and tier.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="not-included" data-section-name="What's not included" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">What’s not included</p>
+          <h2>Clear boundaries, no surprise expectations.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="plain-list">
+            <li>Unlimited support or a guaranteed instant turnaround.</li>
+            <li>Rollover of unused time.</li>
+            <li>
+              Large multi-week programmes, or work beyond the monthly capacity.
+              These are priced separately.
+            </li>
+            <li>
+              Travel and on-site work. Prime may include a quarterly on-site
+              visit; you cover travel and accommodation.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" data-section-name="Pricing" class="section dark">
+      <div class="container">
+        <p class="eyebrow">Pricing</p>
+        <h2>Simple monthly subscription. Priced for retained access, not hours.</h2>
+
+        <div class="price-row">
+          <article>
+            <h3>Core</h3>
+            <p class="price">from £5,850 / month + VAT</p>
+          </article>
+
+          <article>
+            <h3>Pro</h3>
+            <p class="price">from £7,200 / month + VAT</p>
+          </article>
+
+          <article>
+            <h3>Prime</h3>
+            <p class="price">from £9,500 / month + VAT</p>
+            <p>Or scoped to your needs.</p>
+          </article>
+        </div>
+
+        <p class="pricing-note">
+          Monthly rolling, or annual with a commitment discount. VAT applied
+          where relevant. Cross-border B2B is usually handled by reverse charge.
+        </p>
+
+        <p class="pricing-note subtle">
+          Unused capacity does not roll over — that is the trade for holding
+          senior capacity ready for you every month.
+        </p>
+
+        <a
+          class="button light"
+          href={bookingLink}
+          data-analytics-click="book_scoping_call_pricing"
+        >
+          Book a 30-minute scoping call
+        </a>
+      </div>
+    </section>
+
+    <section id="proof" data-section-name="Who's behind it" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Who’s behind it</p>
+          <h2>One senior/principal-level business analyst.</h2>
+          <p>
+            MBA in Innovation and Data Analysis. 17+ years, including 4+ in
+            banking and regulated finance.
+          </p>
+        </div>
+
+        <div class="proof-list">
+          <article>
+            <h3>DORA regulation</h3>
+            <p>
+              Translated the DORA regulation into a business-rules document used
+              by 35–50 product owners across a tier-1 bank’s software portfolio.
+            </p>
+          </article>
+
+          <article>
+            <h3>Regulated telecom platform under M&A</h3>
+            <p>
+              Principal BA work helped cut sprint spillover of nearly-done
+              stories from 10–20% to near zero, and reduced late analytical
+              rework by about half.
+            </p>
+          </article>
+
+          <article>
+            <h3>KYC/AML solution train</h3>
+            <p>
+              Coordinated requirements across onboarding, AML monitoring,
+              sanctions and PEP screening, and regulatory reporting.
+            </p>
+          </article>
+
+          <article>
+            <h3>Retail CLV attribution</h3>
+            <p>
+              Built an omnichannel customer-lifetime-value attribution model for
+              a large retailer and presented the approach at an IAB meeting.
+            </p>
+          </article>
+
+          <article>
+            <h3>Coaching and training</h3>
+            <p>
+              Coached around 46 people and trained roughly 30 more in analysis
+              and product practice.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" data-section-name="Questions" class="section muted">
+      <div class="container">
+        <p class="eyebrow">Questions</p>
+        <h2>Common questions before a scoping call.</h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>Is this just three BA days a month at a day rate?</summary>
+            <p>
+              No. It is retained access — priority, availability and senior
+              delivery across the month — packaged as a subscription. The value
+              is reliable senior capacity on demand, not a discounted day rate.
+            </p>
+          </details>
+
+          <details>
+            <summary>What if we do not use the time one month?</summary>
+            <p>
+              It does not roll over. You are holding senior capacity that is
+              ready when you need it — like a subscription, you pay for access
+              within the period, not for every minute used.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can you work in our hours?</summary>
+            <p>
+              Polish working hours overlap almost the entire UK and European
+              business day, so you get responsive support in real time — with
+              the option to work asynchronously when that suits you better.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do we own the work?</summary>
+            <p>Yes. Documents, templates and methods stay with you.</p>
+          </details>
+
+          <details>
+            <summary>Can you handle regulated or sensitive work?</summary>
+            <p>
+              Yes — experience spans regulated banking, KYC/AML, audit-trail
+              design and operational-resilience regulation. Clients are kept
+              anonymous by default.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do you use AI?</summary>
+            <p>
+              Yes, for accelerated preparation and drafting — always with senior
+              review and accountability. On lower tiers this is how delivery
+              stays efficient.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" data-section-name="Ready to talk?" class="section final-cta">
+      <div class="container">
+        <p class="eyebrow">Ready to talk?</p>
+        <h2>A 30-minute scoping call is the quickest way to see if this fits.</h2>
+        <p>
+          We will look at where the gap is and which tier makes sense.
+        </p>
+
         <div class="actions">
-          <a href="#contact" class="button">Contact us</a>
-          <a href="#features" class="link">See features</a>
+          <a
+            class="button primary"
+            href={bookingLink}
+            data-analytics-click="book_scoping_call_final"
+          >
+            Book a 30-minute scoping call
+          </a>
+
+          <a
+            class="button secondary"
+            href={`mailto:${contactEmail}`}
+            data-analytics-click="email_contact_final"
+          >
+            Email {contactEmail}
+          </a>
         </div>
-      </section>
-
-      <section id="problem">
-        <h2>The problem</h2>
-        <p>
-          Most small teams waste time setting up repetitive business systems
-          instead of focusing on customers and growth.
-        </p>
-      </section>
-
-      <section id="solution">
-        <h2>The solution</h2>
-        <p>
-          BAaaS helps package common business processes into a simple, reusable
-          service layer.
-        </p>
-      </section>
-
-      <section id="features">
-        <h2>Features</h2>
-        <div class="grid">
-          <article>
-            <h3>Fast setup</h3>
-            <p>Launch quickly without overbuilding the first version.</p>
-          </article>
-          <article>
-            <h3>Simple workflow</h3>
-            <p>Keep the process understandable for non-technical users.</p>
-          </article>
-          <article>
-            <h3>Analytics-ready</h3>
-            <p>Track which sections and pages visitors care about.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="pricing">
-        <h2>Pricing</h2>
-        <p>
-          Pricing will be added later. For now, this section proves that
-          analytics can track interest in pricing.
-        </p>
-      </section>
-
-      <section id="faq">
-        <h2>FAQ</h2>
-        <details>
-          <summary>Is this the final design?</summary>
-          <p>No. This is the first working version so we can test deployment.</p>
-        </details>
-        <details>
-          <summary>Will we add Google Analytics?</summary>
-          <p>Yes. After this page deploys successfully.</p>
-        </details>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>
-          Interested? Email us or connect a form here later.
-        </p>
-        <a href="mailto:hello@example.com" class="button">Email us</a>
-      </section>
-    </main>
-  </body>
-</html>
+      </div>
+    </section>
+  </main>
+</Layout>
 
 <style>
   :root {
+    --bg: #f6f2ea;
+    --surface: #ffffff;
+    --surface-muted: #efe8dc;
+    --text: #171717;
+    --muted: #5d5d5d;
+    --line: rgba(23, 23, 23, 0.12);
+    --dark: #171717;
+    --dark-muted: #bdbdbd;
+    --accent: #9a6a3a;
+    --accent-dark: #6f4825;
+    --radius-lg: 28px;
+    --radius-md: 18px;
     font-family:
       Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", sans-serif;
-    color: #172033;
-    background: #f6f7fb;
+    color: var(--text);
+    background: var(--bg);
   }
 
   * {
@@ -105,121 +454,369 @@
 
   body {
     margin: 0;
+    background:
+      radial-gradient(circle at top left, rgba(154, 106, 58, 0.16), transparent 36rem),
+      var(--bg);
   }
 
-  main {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .container {
     width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
   }
 
-  section {
-    padding: 80px 0;
-    border-bottom: 1px solid #e4e7ef;
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
   }
 
-  .hero {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 48px;
+    align-items: center;
   }
 
   .eyebrow {
-    font-weight: 700;
+    margin: 0 0 16px;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #5263ff;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
   }
 
   h1 {
-    max-width: 760px;
-    margin: 0;
-    font-size: clamp(48px, 8vw, 96px);
+    max-width: 820px;
+    margin-bottom: 24px;
+    font-size: clamp(3.6rem, 8vw, 7.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.075em;
+  }
+
+  h2 {
+    max-width: 860px;
+    margin-bottom: 24px;
+    font-size: clamp(2.35rem, 5vw, 5rem);
     line-height: 0.95;
     letter-spacing: -0.06em;
   }
 
-  h2 {
-    margin: 0 0 16px;
-    font-size: clamp(32px, 5vw, 56px);
-    letter-spacing: -0.04em;
-  }
-
   h3 {
-    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
   }
 
-  p {
-    max-width: 680px;
-    font-size: 18px;
+  p,
+  li {
+    font-size: 1.05rem;
     line-height: 1.7;
-    color: #4d5668;
+    color: var(--muted);
   }
 
-  .lead {
-    margin-top: 24px;
-    font-size: 22px;
+  .hero-lead {
+    max-width: 760px;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.55;
+  }
+
+  .subline {
+    max-width: 760px;
+    color: var(--text);
+    font-weight: 700;
   }
 
   .actions {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 14px;
     align-items: center;
     margin-top: 32px;
-    flex-wrap: wrap;
   }
 
   .button {
     display: inline-flex;
+    min-height: 50px;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
     padding: 0 22px;
+    border: 1px solid transparent;
     border-radius: 999px;
-    background: #172033;
-    color: white;
-    font-weight: 700;
+    font-weight: 800;
     text-decoration: none;
+    transition:
+      transform 160ms ease,
+      background 160ms ease,
+      border-color 160ms ease;
   }
 
-  .link {
-    color: #172033;
-    font-weight: 700;
+  .button:hover {
+    transform: translateY(-1px);
   }
 
-  .grid {
+  .button.primary {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .button.secondary {
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--text);
+  }
+
+  .button.light {
+    background: #fff;
+    color: var(--dark);
+  }
+
+  .hero-card,
+  .tier,
+  .list-card,
+  .proof-list article,
+  .steps article,
+  .price-row article {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 24px 80px rgba(23, 23, 23, 0.08);
+  }
+
+  .hero-card {
+    padding: 32px;
+  }
+
+  .card-label {
+    margin-bottom: 18px;
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .hero-card ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .hero-card li + li {
+    margin-top: 12px;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+  }
+
+  .content-stack p {
+    font-size: 1.15rem;
+  }
+
+  .muted {
+    background: rgba(239, 232, 220, 0.58);
+  }
+
+  .steps,
+  .pricing-grid,
+  .price-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 22px;
+    margin-top: 40px;
+  }
+
+  .steps article,
+  .tier,
+  .price-row article {
+    padding: 28px;
+  }
+
+  .steps span {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    background: var(--dark);
+    color: #fff;
+    font-weight: 900;
+  }
+
+  .wide-note {
+    max-width: 900px;
+    margin-top: 36px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .tier.featured {
+    border-color: rgba(154, 106, 58, 0.6);
+    background: #fff;
+  }
+
+  .badge {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 16px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(154, 106, 58, 0.12);
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 900;
+  }
+
+  .tier-fit {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .list-card {
+    padding: 30px;
+  }
+
+  .check-list,
+  .plain-list {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .check-list li + li,
+  .plain-list li + li {
+    margin-top: 14px;
+  }
+
+  .dark {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .dark .eyebrow,
+  .dark p,
+  .dark li {
+    color: var(--dark-muted);
+  }
+
+  .dark h2,
+  .dark h3 {
+    color: #fff;
+  }
+
+  .dark .price-row article {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+  }
+
+  .price {
+    color: #fff !important;
+    font-size: 1.35rem;
+    font-weight: 900;
+  }
+
+  .pricing-note {
+    max-width: 860px;
+    margin-top: 28px;
+  }
+
+  .pricing-note.subtle {
+    font-style: italic;
+  }
+
+  .proof-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .proof-list article {
+    padding: 24px;
+    box-shadow: none;
+  }
+
+  .faq-list {
+    max-width: 860px;
     margin-top: 32px;
   }
 
-  article {
-    padding: 24px;
-    border: 1px solid #e4e7ef;
-    border-radius: 24px;
-    background: white;
-  }
-
   details {
-    max-width: 720px;
-    padding: 20px 0;
-    border-bottom: 1px solid #e4e7ef;
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
   }
 
   summary {
     cursor: pointer;
-    font-weight: 700;
-    font-size: 18px;
+    font-size: 1.15rem;
+    font-weight: 900;
   }
 
-  @media (max-width: 760px) {
-    section {
+  details p {
+    margin: 16px 0 0;
+  }
+
+  .final-cta {
+    padding-bottom: 120px;
+  }
+
+  .final-cta p {
+    max-width: 680px;
+  }
+
+  @media (max-width: 860px) {
+    .section {
+      padding: 72px 0;
+    }
+
+    .hero-grid,
+    .two-column,
+    .steps,
+    .pricing-grid,
+    .price-row {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-card {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .container {
+      width: min(100% - 24px, 1120px);
+    }
+
+    .section {
       padding: 56px 0;
     }
 
-    .grid {
-      grid-template-columns: 1fr;
+    h1 {
+      font-size: clamp(3rem, 18vw, 4.4rem);
+    }
+
+    .button {
+      width: 100%;
     }
   }
 </style>

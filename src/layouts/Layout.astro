@@ -1,23 +1,102 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import { siteConfig } from "../config/site";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const {
+  title = "BAaaS",
+  description = "Senior business analysis, on subscription.",
+  lang = "en",
+} = Astro.props;
+
+const GA_ID = siteConfig.gaMeasurementId;
+const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    {
+      hasAnalytics && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+          <script is:inline define:vars={{ GA_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              window.dataLayer.push(arguments);
+            }
+            window.gtag = gtag;
+            gtag("js", new Date());
+            gtag("config", GA_ID);
+          </script>
+        </>
+      )
+    }
+  </head>
+
+  <body>
+    <slot />
+
+    <script is:inline>
+      const trackedSections = new Set();
+
+      const getLanguage = () => {
+        const htmlLang = document.documentElement.lang;
+        if (htmlLang) return htmlLang;
+        if (window.location.pathname.startsWith("/pl")) return "pl";
+        return "en";
+      };
+
+      const sendAnalyticsEvent = (eventName, params) => {
+        if (typeof window.gtag !== "function") return;
+        window.gtag("event", eventName, params);
+      };
+
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const section = entry.target;
+              const sectionId = section.id;
+              if (!sectionId) return;
+
+              const uniqueKey = `${window.location.pathname}#${sectionId}`;
+              if (trackedSections.has(uniqueKey)) return;
+
+              trackedSections.add(uniqueKey);
+
+              sendAnalyticsEvent("section_view", {
+                section_id: sectionId,
+                section_name: section.dataset.sectionName || sectionId,
+                language: getLanguage(),
+                page_path: window.location.pathname,
+              });
+            });
+          },
+          {
+            threshold: 0.5,
+          }
+        );
+
+        document.querySelectorAll("section[id]").forEach((section) => {
+          sectionObserver.observe(section);
+        });
+      }
+
+      document.querySelectorAll("[data-analytics-click]").forEach((element) => {
+        element.addEventListener("click", () => {
+          sendAnalyticsEvent("cta_click", {
+            cta_name: element.dataset.analyticsClick,
+            language: getLanguage(),
+            page_path: window.location.pathname,
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
