@@ -1,10 +1,10 @@
 ---
-import { siteConfig } from "../config/site";
 import "../styles/global.css";
+import { siteConfig } from "../config/site";
 
 const {
   title = "BAaaS",
-  description = "Senior business analysis, on subscription.",
+  description = "Fractional delivery leadership for regulated and fintech teams.",
   lang = "en",
 } = Astro.props;
 
@@ -43,6 +43,7 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
 
     <script is:inline>
       const trackedSections = new Set();
+      const trackedFaqs = new Set();
 
       const getLanguage = () => {
         const htmlLang = document.documentElement.lang;
@@ -51,23 +52,27 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
         return "en";
       };
 
-      const cleanParams = (params) =>
-        Object.fromEntries(
-          Object.entries(params).filter(([, value]) => value !== undefined && value !== "")
-        );
-
       const sendAnalyticsEvent = (eventName, params = {}) => {
         if (typeof window.gtag !== "function") return;
+        window.gtag("event", eventName, {
+          language: getLanguage(),
+          page_path: window.location.pathname,
+          ...params,
+        });
+      };
 
-        window.gtag(
-          "event",
-          eventName,
-          cleanParams({
-            language: getLanguage(),
-            page_path: window.location.pathname,
-            ...params,
-          })
-        );
+      const sectionEventMap = {
+        hero: "view_hero",
+        problem: "scroll_problem",
+        "two-ways": "scroll_two_ways",
+        products: "view_products",
+        "how-it-works": "scroll_how",
+        pricing: "view_pricing",
+        included: "view_included",
+        proof: "scroll_proof",
+        faq: "view_faq",
+        "lead-magnet": "view_lead_magnet",
+        contact: "view_contact",
       };
 
       if ("IntersectionObserver" in window) {
@@ -85,21 +90,19 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
 
               trackedSections.add(uniqueKey);
 
-              sendAnalyticsEvent("section_view", {
+              const baseParams = {
                 section_id: sectionId,
                 section_name: section.dataset.sectionName || sectionId,
-              });
+              };
 
-              if (sectionId === "pricing") {
-                sendAnalyticsEvent("view_pricing", {
-                  location: "pricing_section",
-                });
+              sendAnalyticsEvent("section_view", baseParams);
+
+              if (sectionEventMap[sectionId]) {
+                sendAnalyticsEvent(sectionEventMap[sectionId], baseParams);
               }
             });
           },
-          {
-            threshold: 0.5,
-          }
+          { threshold: 0.45 }
         );
 
         document.querySelectorAll("section[id]").forEach((section) => {
@@ -107,25 +110,35 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
         });
       }
 
-      document.querySelectorAll("[data-analytics-click]").forEach((element) => {
+      document.querySelectorAll("[data-analytics-click], [data-ga-event]").forEach((element) => {
         element.addEventListener("click", () => {
-          const eventName = element.dataset.analyticsEvent || "cta_click";
+          const eventName = element.dataset.gaEvent || "cta_click";
+          const params = {};
 
-          sendAnalyticsEvent(eventName, {
-            cta_name: element.dataset.analyticsClick,
-            location: element.dataset.analyticsLocation,
-            asset: element.dataset.analyticsAsset,
-            tier: element.dataset.analyticsTier,
-          });
+          if (element.dataset.analyticsClick) params.cta_name = element.dataset.analyticsClick;
+          if (element.dataset.gaLocation) params.location = element.dataset.gaLocation;
+          if (element.dataset.gaProduct) params.product = element.dataset.gaProduct;
+          if (element.dataset.gaTier) params.tier = element.dataset.gaTier;
+
+          sendAnalyticsEvent(eventName, params);
+
+          if (eventName === "select_product" && element.dataset.gaProduct === "readiness_review") {
+            sendAnalyticsEvent("readiness_review_start", params);
+          }
         });
       });
 
-      document.querySelectorAll("[data-lead-form]").forEach((form) => {
-        form.addEventListener("submit", () => {
-          sendAnalyticsEvent("lead_magnet_submit", {
-            asset: form.dataset.analyticsAsset || "unclear_requirements_guide",
-            location: form.dataset.analyticsLocation || "guide_section",
-          });
+      document.querySelectorAll("details").forEach((details, index) => {
+        details.addEventListener("toggle", () => {
+          if (!details.open) return;
+
+          const summary = details.querySelector("summary");
+          const question = summary ? summary.textContent.trim() : `faq_${index + 1}`;
+          const key = `${window.location.pathname}:${question}`;
+          if (trackedFaqs.has(key)) return;
+
+          trackedFaqs.add(key);
+          sendAnalyticsEvent("faq_open", { q: question });
         });
       });
     </script>

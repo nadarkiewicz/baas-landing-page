@@ -1,0 +1,95 @@
+---
+type Language = "en" | "pl";
+
+interface Props {
+  lang: Language;
+  contactEmail: string;
+  action?: string;
+}
+
+const { lang, contactEmail, action = "" } = Astro.props;
+
+const copy = {
+  en: {
+    eyebrow: "Not ready to talk?",
+    title: "Take the thinking with you.",
+    body: "Get the guide — The hidden cost of unclear requirements — plus a one-page Definition of Ready checklist.",
+    placeholder: "your email",
+    button: "Send it to me",
+    note: "No spam. One useful note a month, unsubscribe anytime.",
+    subject: "BAaaS guide request",
+    bodyPrefix: "Please send me the guide: The hidden cost of unclear requirements.",
+  },
+  pl: {
+    eyebrow: "Nie na teraz?",
+    title: "Zabierz to ze sobą.",
+    body: "Pobierz przewodnik — Ukryty koszt niejasnych wymagań — i jednostronicową listę Definicji Gotowości.",
+    placeholder: "Twój e-mail",
+    button: "Wyślij mi",
+    note: "Bez spamu. Jedna przydatna wiadomość miesięcznie, w każdej chwili możesz się wypisać.",
+    subject: "Prośba o przewodnik BAaaS",
+    bodyPrefix: "Proszę o przesłanie przewodnika: Ukryty koszt niejasnych wymagań.",
+  },
+}[lang];
+
+const formAction = action || `mailto:${contactEmail}`;
+---
+
+<section id="lead-magnet" data-section-name={copy.title} class="section lead-magnet-section">
+  <div class="container lead-magnet">
+    <div>
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2>{copy.title}</h2>
+      <p>{copy.body}</p>
+    </div>
+
+    <form
+      class="lead-form"
+      action={formAction}
+      method="post"
+      data-lead-magnet-form
+      data-language={lang}
+      data-contact-email={contactEmail}
+      data-email-subject={copy.subject}
+      data-email-body-prefix={copy.bodyPrefix}
+    >
+      <label class="sr-only" for={`lead-email-${lang}`}>{copy.placeholder}</label>
+      <input id={`lead-email-${lang}`} type="email" name="email" placeholder={copy.placeholder} required />
+      <button type="submit" data-analytics-click={`lead_magnet_submit_${lang}`}>
+        {copy.button}
+      </button>
+      <p class="form-note">{copy.note}</p>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll("[data-lead-magnet-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      const language = form.dataset.language || document.documentElement.lang || "en";
+
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "lead_magnet_submit", {
+          asset: "whitepaper",
+          language,
+          page_path: window.location.pathname,
+        });
+      }
+
+      const action = form.getAttribute("action") || "";
+
+      if (action.startsWith("mailto:")) {
+        event.preventDefault();
+
+        const emailInput = form.querySelector('input[type="email"]');
+        const visitorEmail = emailInput ? emailInput.value : "";
+        const contactEmail = form.dataset.contactEmail;
+        const subject = encodeURIComponent(form.dataset.emailSubject || "BAaaS guide request");
+        const bodyPrefix = form.dataset.emailBodyPrefix || "Please send me the guide.";
+        const body = encodeURIComponent(`${bodyPrefix}\n\nVisitor email: ${visitorEmail}`);
+
+        window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+      }
+    });
+  });
+</script>

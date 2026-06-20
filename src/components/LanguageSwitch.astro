@@ -1,0 +1,31 @@
+---
+type Language = "en" | "pl";
+
+interface Props {
+  current: Language;
+}
+
+const { current } = Astro.props;
+---
+
+<nav class="language-switch" aria-label={current === "pl" ? "Przełącznik języka" : "Language switcher"}>
+  <a
+    href="/"
+    aria-current={current === "en" ? "page" : undefined}
+    data-ga-event="language_switch"
+    data-ga-location="header"
+    data-analytics-click={current === "en" ? "language_en_current" : "language_en"}
+  >
+    EN
+  </a>
+
+  <a
+    href="/pl/"
+    aria-current={current === "pl" ? "page" : undefined}
+    data-ga-event="language_switch"
+    data-ga-location="header"
+    data-analytics-click={current === "pl" ? "language_pl_current" : "language_pl"}
+  >
+    PL
+  </a>
+</nav>

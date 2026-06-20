@@ -1,0 +1,45 @@
+---
+type Variant = "primary" | "secondary" | "light" | "ghost";
+
+interface Props {
+  href: string;
+  variant?: Variant;
+  analyticsClick?: string;
+  gaEvent?: string;
+  gaLocation?: string;
+  gaProduct?: string;
+  gaTier?: string;
+  target?: string;
+  rel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  analyticsClick,
+  gaEvent,
+  gaLocation,
+  gaProduct,
+  gaTier,
+  target,
+  rel,
+  class: className = "",
+} = Astro.props;
+
+const classes = ["button", variant, className].filter(Boolean).join(" ");
+---
+
+<a
+  class={classes}
+  href={href}
+  target={target}
+  rel={rel}
+  data-analytics-click={analyticsClick}
+  data-ga-event={gaEvent}
+  data-ga-location={gaLocation}
+  data-ga-product={gaProduct}
+  data-ga-tier={gaTier}
+>
+  <slot />
+</a>

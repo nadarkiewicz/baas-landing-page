@@ -1,0 +1,14 @@
+---
+interface Props {
+  question: string;
+}
+
+const { question } = Astro.props;
+---
+
+<details>
+  <summary>{question}</summary>
+  <p>
+    <slot />
+  </p>
+</details>

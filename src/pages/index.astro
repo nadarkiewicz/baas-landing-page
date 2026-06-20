@@ -1,68 +1,86 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { siteConfig } from "../config/site";
+import Button from "../components/Button.astro";
+import LanguageSwitch from "../components/LanguageSwitch.astro";
+import ProductCard from "../components/ProductCard.astro";
+import PricingCard from "../components/PricingCard.astro";
+import ProofCard from "../components/ProofCard.astro";
+import FaqItem from "../components/FaqItem.astro";
+import LeadMagnet from "../components/LeadMagnet.astro";
 
-const contactEmail = siteConfig.contactEmail;
-const bookingLink = siteConfig.bookingLink;
-const leadMagnetAction = siteConfig.leadMagnetAction;
-const leadMagnetFallback = `mailto:${contactEmail}?subject=Send%20me%20the%20BAaaS%20guide`;
-const guideAction = leadMagnetAction || leadMagnetFallback;
+const { contactEmail, bookingLink, readinessReviewLink, leadMagnetAction } = siteConfig;
 ---
 
 <Layout
-  title="BAaaS — Senior business analysis, on subscription"
-  description="Retained access to a senior, MBA-level business analyst — 17+ years in banking, software, retail and e-commerce."
+  title="BAaaS — Fractional delivery leadership for regulated and fintech teams"
+  description="Senior requirements, decisions and documentation — retained monthly, or as fixed-scope projects."
   lang="en"
 >
   <main>
-    <nav class="language-switch" aria-label="Language switcher">
-      <a href="/" aria-current="page" data-analytics-click="language_en_current">EN</a>
-      <a href="/pl/" data-analytics-click="language_pl">PL</a>
-    </nav>
+    <LanguageSwitch current="en" />
+
+    <div class="sticky-cta">
+      <div class="sticky-cta-inner">
+        <span class="sticky-title">BAaaS · Fractional delivery leadership</span>
+        <Button
+          href={bookingLink}
+          variant="primary"
+          analyticsClick="book_call_sticky_en"
+          gaEvent="cta_book_click"
+          gaLocation="sticky"
+        >
+          Book a 30-minute call
+        </Button>
+      </div>
+    </div>
 
     <section id="hero" data-section-name="Hero" class="section hero">
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">BAaaS</p>
-          <h1>Senior business analysis, on subscription.</h1>
+          <h1>Fractional delivery leadership for regulated and fintech teams.</h1>
           <p class="hero-lead">
-            Retained access to a senior, MBA-level business analyst — 17+ years
-            in banking, software, retail and e-commerce. For the months you need
-            senior firepower, without a full-time hire.
+            Senior requirements, decisions and documentation — retained monthly,
+            or as fixed-scope projects. 17+ years in banking, regulated finance
+            and complex software, without a full-time hire.
           </p>
 
           <div class="actions">
-            <a
-              class="button primary"
+            <Button
               href={bookingLink}
-              data-analytics-click="book_call_hero"
-              data-analytics-location="hero"
+              variant="primary"
+              analyticsClick="book_call_hero_en"
+              gaEvent="cta_book_click"
+              gaLocation="hero"
             >
               Book a 30-minute call
-            </a>
-            <a
-              class="text-link"
-              href="#guide"
-              data-analytics-click="get_guide_hero"
-              data-analytics-location="hero"
-              data-analytics-asset="unclear_requirements_guide"
+            </Button>
+
+            <Button
+              href={readinessReviewLink}
+              variant="secondary"
+              analyticsClick="readiness_review_hero_en"
+              gaEvent="readiness_review_start"
+              gaProduct="readiness_review"
+              gaLocation="hero"
             >
-              or get the guide → The hidden cost of unclear requirements
-            </a>
+              Start with a Readiness Review →
+            </Button>
           </div>
 
-          <p class="cred-line">
-            17+ years · Banking · Software · Retail · Regulated finance
+          <p class="trust-strip">
+            17+ years · Banking · Fintech · Regulated software · DORA / KYC-AML
           </p>
         </div>
 
         <aside class="hero-card" aria-label="BAaaS summary">
-          <p class="card-label">Retained senior BA capacity</p>
+          <p class="card-label">Senior help upstream of the build</p>
           <ul>
-            <li>Principal-level analysis without a full-time hire</li>
-            <li>Documents, workshops and decision support</li>
-            <li>Built for delivery, product and portfolio teams</li>
-            <li>Monthly subscription, not hourly billing</li>
+            <li>Requirements, decisions and documentation</li>
+            <li>Fixed-scope products or monthly retained access</li>
+            <li>Built for regulated, fintech and complex-software teams</li>
+            <li>Clear outputs, fixed entry points, measurable intent</li>
           </ul>
         </aside>
       </div>
@@ -72,212 +90,273 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
       <div class="container two-column">
         <div>
           <p class="eyebrow">The problem</p>
-          <h2>You run delivery, portfolio or product work.</h2>
+          <h2>The gap usually sits upstream of the build.</h2>
         </div>
 
         <div class="content-stack">
           <p>
-            Your people — junior to senior — handle requirements, prioritisation
-            and stakeholder calls. But no one senior owns the analysis. Decisions
-            stall. Documentation slips. Even strong people whose expertise sits
-            elsewhere need a senior sparring partner.
+            When delivery slips, decisions stall, or your documentation wouldn't
+            survive an audit, the cause is usually <strong>upstream of the build</strong> —
+            no one senior owns the requirements and the decisions.
           </p>
 
           <p>
-            <strong>Or you carry capability targets.</strong> You need practical
-            business-analysis skill to grow inside the company — not another
-            generic training day that leaves nothing behind.
+            <strong>If you run delivery, product or a transformation:</strong>
+            capable people handle requirements and stakeholders in the gaps, but
+            no senior owns the thread. Decisions wait. Rework piles up.
+            Audit-readiness slips.
           </p>
 
           <p>
-            Either way, hiring a full-time principal BA is slow, expensive, and
-            more than you need every month.
+            <strong>If you carry capability or regulatory pressure:</strong> you
+            need senior rigour your team keeps — not a generic training day, and
+            not a slow, expensive full-time hire you only half-need.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" data-section-name="How it works" class="section muted">
+    <section id="two-ways" data-section-name="Two ways to work" class="section muted">
       <div class="container">
-        <p class="eyebrow">How it works</p>
-        <h2>Think subscription, not hourly billing.</h2>
-        <p class="hero-lead">
-          You hold senior capacity for the month and use it where the gap is.
+        <p class="eyebrow">Two ways to work</p>
+        <h2>Start with a project, or retain senior capacity monthly.</h2>
+
+        <div class="steps">
+          <article>
+            <span>1</span>
+            <h3>Start with a fixed-scope project.</h3>
+            <p>
+              A named piece of work, fixed price, clear deliverable. The
+              simplest way to get value fast and see how we work.
+            </p>
+          </article>
+
+          <article>
+            <span>2</span>
+            <h3>Retain senior capacity monthly.</h3>
+            <p>
+              Ongoing access for requirements, decisions and documentation
+              across your work — about three senior days a month, used where the
+              gap is.
+            </p>
+          </article>
+
+          <article>
+            <span>3</span>
+            <h3>Move when it is paying off.</h3>
+            <p>
+              Most clients start with a project and move to retained once it is
+              paying off.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" data-section-name="Fixed-scope products" class="section">
+      <div class="container">
+        <p class="eyebrow">Fixed-scope products</p>
+        <h2>Fixed scope, fixed price, senior delivery.</h2>
+        <p>
+          Buy one on its own — or use it inside a retained month.
+        </p>
+
+        <div class="product-grid">
+          <ProductCard
+            title="Delivery Readiness Review"
+            price="£1,950"
+            productKey="readiness_review"
+            ctaHref={readinessReviewLink}
+            ctaText="Start here"
+            badge="Best first step"
+            featured
+            lang="en"
+          >
+            A senior look at where your requirements, decisions and delivery are
+            quietly costing you, with a prioritised plan to fix it. Credited to
+            your first month if you go retained within 30 days.
+          </ProductCard>
+
+          <ProductCard
+            title="Regulation into Requirements"
+            price="from £5,850"
+            productKey="regulation_requirements"
+            ctaHref={bookingLink}
+            ctaText="Discuss this"
+            lang="en"
+          >
+            Turn a regulation — DORA, KYC/AML, a new rule from your regulator —
+            into clear business rules and a team-by-team list of what changes.
+            The complex made usable.
+          </ProductCard>
+
+          <ProductCard
+            title="Requirements Reset"
+            price="from £3,900"
+            productKey="requirements_reset"
+            ctaHref={bookingLink}
+            ctaText="Discuss this"
+            lang="en"
+          >
+            Get clear, testable requirements and a shared definition of ready,
+            so your team stops re-arguing the same things and rebuilding work twice.
+          </ProductCard>
+
+          <ProductCard
+            title="Decision Paper"
+            price="from £1,950"
+            productKey="decision_paper"
+            ctaHref={bookingLink}
+            ctaText="Discuss this"
+            lang="en"
+          >
+            Take one decision that has been stuck for weeks to clear options,
+            honest trade-offs, and a recommendation your team can actually act on.
+          </ProductCard>
+        </div>
+
+        <div class="actions">
+          <Button
+            href={bookingLink}
+            variant="primary"
+            analyticsClick="book_call_products_en"
+            gaEvent="cta_book_click"
+            gaLocation="products"
+          >
+            See which fits → Book a 30-minute call
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" data-section-name="Retained monthly" class="section dark">
+      <div class="container">
+        <p class="eyebrow">Or retain senior capacity monthly</p>
+        <h2>For ongoing need, hold senior capacity each month.</h2>
+        <p>
+          The subscription holds senior capacity for you each month — used
+          flexibly where it helps most.
         </p>
 
         <div class="steps">
           <article>
             <span>1</span>
             <h3>Pick a tier.</h3>
-            <p>
-              Core, Pro or Prime — same service, three levels of priority and
-              scope.
-            </p>
+            <p>Core, Pro or Prime — same service, three levels of priority and scope.</p>
           </article>
 
           <article>
             <span>2</span>
             <h3>Agree the month’s mix.</h3>
             <p>
-              Within ~3 retained senior days, we shape the right blend: a
-              document, a workshop, on-call advisory, decision support and
-              follow-up.
+              Within ~3 senior days: a document, a workshop, on-call advisory,
+              decision support.
             </p>
           </article>
 
           <article>
             <span>3</span>
             <h3>Keep everything.</h3>
-            <p>
-              Documents, templates and methods stay inside your company. The
-              knowledge does not leave when the month ends.
-            </p>
+            <p>Documents, templates and methods stay inside your company.</p>
           </article>
         </div>
 
         <p class="wide-note">
-          You are paying for retained access and priority — not for hours on a
-          clock. Capacity is deliberately limited, so quality stays high. Unused
-          time does not roll over; we hold the capacity for you each month.
+          You are paying for retained access and priority, not hours. Capacity
+          is deliberately limited, so quality stays high. Unused time does not
+          roll over; we hold the capacity for you.
         </p>
-      </div>
-    </section>
-
-    <section id="included" data-section-name="What's included" class="section">
-      <div class="container two-column">
-        <div>
-          <p class="eyebrow">What’s included</p>
-          <h2>Practical senior support, shaped around the month.</h2>
-        </div>
-
-        <div class="list-card">
-          <ul class="check-list">
-            <li>
-              <strong>One analytical or management document each month</strong>,
-              on an agreed day — requirements brief, process map, decision
-              paper, backlog breakdown, prioritisation framework or workshop
-              pack.
-            </li>
-            <li>
-              <strong>On-call availability</strong> during business hours —
-              roughly two days a week.
-            </li>
-            <li>
-              <strong>An ad hoc 2-hour session within 48 hours</strong>,
-              tier-dependent.
-            </li>
-            <li>
-              <strong>A 4–6 hour session within 7 days</strong>, tier-dependent.
-            </li>
-            <li>
-              <strong>Workshops, facilitation, decision support, templates and
-              follow-up</strong> — blended to fit the month and tier.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="not-included" data-section-name="What's not included" class="section muted">
-      <div class="container two-column">
-        <div>
-          <p class="eyebrow">What’s not included</p>
-          <h2>Clear boundaries, no surprise expectations.</h2>
-        </div>
-
-        <div class="list-card">
-          <ul class="plain-list">
-            <li>Unlimited support or a guaranteed instant turnaround.</li>
-            <li>Rollover of unused time.</li>
-            <li>
-              Large multi-week programmes, or work beyond the monthly capacity.
-              These are priced separately.
-            </li>
-            <li>
-              Travel and on-site work. Prime may include a quarterly on-site
-              visit; you cover travel and accommodation.
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
 
     <section id="pricing" data-section-name="Pricing" class="section dark">
       <div class="container">
         <p class="eyebrow">Pricing</p>
-        <h2>Simple monthly subscription. Priced for retained access, not hours.</h2>
+        <h2>Monthly retained access for requirements, decisions and documentation.</h2>
 
-        <div class="price-row">
-          <article>
-            <h3>Core</h3>
-            <p class="price">from £5,850 / month + VAT</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_core"
-              data-analytics-tier="core"
-              data-analytics-location="pricing"
-            >
-              Discuss Core
-            </a>
-          </article>
+        <div class="pricing-grid">
+          <PricingCard
+            tier="Core"
+            price="from £5,850 / month + VAT"
+            description="Structured retained access where the need is clear and the delivery can be more asynchronous."
+            ctaHref={bookingLink}
+            ctaText="Discuss Core"
+            lang="en"
+          />
 
-          <article class="featured">
-            <p class="badge">Most chosen</p>
-            <h3>Pro</h3>
-            <p class="price">from £7,200 / month + VAT</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_pro"
-              data-analytics-tier="pro"
-              data-analytics-location="pricing"
-            >
-              Discuss Pro
-            </a>
-          </article>
+          <PricingCard
+            tier="Pro"
+            price="from £7,200 / month + VAT"
+            description="A practical balance of access, responsiveness and tailored support for ongoing delivery pressure."
+            badge="Most chosen"
+            featured
+            ctaHref={bookingLink}
+            ctaText="Discuss Pro"
+            lang="en"
+          />
 
-          <article>
-            <h3>Prime</h3>
-            <p class="price">from £9,500 / month + VAT</p>
-            <p>Or scoped to your needs.</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_prime"
-              data-analytics-tier="prime"
-              data-analytics-location="pricing"
-            >
-              Discuss Prime
-            </a>
-          </article>
+          <PricingCard
+            tier="Prime"
+            price="from £9,500 / month + VAT"
+            description="Higher priority, closer involvement and more tailored support. Or scoped to your needs."
+            ctaHref={bookingLink}
+            ctaText="Discuss Prime"
+            lang="en"
+          />
         </div>
 
         <p class="pricing-note">
-          Monthly rolling, or annual with a commitment discount. VAT applied
-          where relevant. Cross-border B2B is usually handled by reverse charge.
+          Monthly rolling, or annual with a commitment discount.
+          <strong> Monthly rolling — no long lock-in. Start with a month and see.</strong>
         </p>
 
-        <p class="pricing-note">
-          Monthly rolling — no long lock-in. Start with a month and see.
-        </p>
+        <div class="actions">
+          <Button
+            href={bookingLink}
+            variant="light"
+            analyticsClick="book_call_pricing_en"
+            gaEvent="cta_book_click"
+            gaLocation="pricing"
+          >
+            Book a 30-minute call
+          </Button>
+        </div>
+      </div>
+    </section>
 
-        <p class="pricing-note subtle">
-          Unused capacity does not roll over — that is the trade for holding
-          senior capacity ready for you every month.
-        </p>
+    <section id="included" data-section-name="What the subscription includes" class="section muted">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">What the subscription includes</p>
+          <h2>Clear monthly support, with clear boundaries.</h2>
+        </div>
 
-        <a
-          class="button light"
-          href={bookingLink}
-          data-analytics-click="book_call_pricing"
-          data-analytics-location="pricing"
-        >
-          Book a 30-minute call
-        </a>
+        <div class="list-card">
+          <ul class="check-list">
+            <li>One analytical or management document each month, on an agreed day.</li>
+            <li>On-call availability during business hours — roughly two days a week.</li>
+            <li>Ad hoc and longer sessions within the response times for your tier.</li>
+            <li>Workshops, facilitation, decision support, templates and follow-up.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="not-included" data-section-name="What it doesn't" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">What it doesn’t</p>
+          <h2>No hidden promise of unlimited availability.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="plain-list">
+            <li>Unlimited support or a guaranteed instant turnaround.</li>
+            <li>Rollover of unused time.</li>
+            <li>Large multi-week programmes. These are priced separately.</li>
+            <li>Travel and on-site work. Prime may include a quarterly on-site visit; you cover travel.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -285,58 +364,34 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
       <div class="container two-column">
         <div>
           <p class="eyebrow">Who’s behind it</p>
-          <h2>One senior/principal-level business analyst.</h2>
+          <h2>One senior/principal-level practitioner.</h2>
           <p>
-            MBA in Innovation and Data Analysis. 17+ years, including 4+ in
-            banking and regulated finance.
-          </p>
-          <p>
-            Comfortable in regulated environments: requirements, audit-trail
-            design, documentation quality and decision traceability.
+            MBA. 17+ years, including 4+ in banking and regulated finance.
+            Comfortable where documentation quality, audit trails and decision
+            traceability matter. Clients kept anonymous by default.
           </p>
         </div>
 
         <div class="proof-list">
-          <article>
-            <h3>DORA regulation</h3>
-            <p>
-              Translated the DORA regulation into a business-rules document used
-              by 35–50 product owners across a tier-1 bank’s software portfolio.
-            </p>
-          </article>
+          <ProofCard title="DORA business rules">
+            Translated the DORA regulation into business rules used by 35–50
+            product owners across a tier-1 bank.
+          </ProofCard>
 
-          <article>
-            <h3>Regulated telecom platform under M&A</h3>
-            <p>
-              Principal BA work helped cut sprint spillover of nearly-done
-              stories from 10–20% to near zero, and reduced late analytical
-              rework by about half.
-            </p>
-          </article>
+          <ProofCard title="Regulated telecom platform under M&A">
+            Principal lead work cut sprint spillover of nearly-done work from
+            10–20% to near zero, and roughly halved late rework.
+          </ProofCard>
 
-          <article>
-            <h3>KYC/AML solution train</h3>
-            <p>
-              Coordinated requirements across onboarding, AML monitoring,
-              sanctions and PEP screening, and regulatory reporting.
-            </p>
-          </article>
+          <ProofCard title="Multi-team KYC/AML programme">
+            Coordinated requirements across onboarding, AML monitoring,
+            sanctions/PEP screening and regulatory reporting.
+          </ProofCard>
 
-          <article>
-            <h3>Retail CLV model</h3>
-            <p>
-              Built an omnichannel customer-lifetime-value model for a large
-              retailer and presented the approach at an IAB meeting.
-            </p>
-          </article>
-
-          <article>
-            <h3>People development</h3>
-            <p>
-              Helped develop around 46 people and trained roughly 30 more in
-              analysis and product practice.
-            </p>
-          </article>
+          <ProofCard title="Omnichannel customer-value model">
+            Built an omnichannel customer-value model for a large retailer and
+            presented it at an IAB meeting.
+          </ProofCard>
         </div>
       </div>
     </section>
@@ -344,124 +399,89 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
     <section id="faq" data-section-name="Questions" class="section muted">
       <div class="container">
         <p class="eyebrow">Questions</p>
-        <h2>Common questions before a scoping call.</h2>
+        <h2>Common questions before a call or first project.</h2>
 
         <div class="faq-list">
-          <details>
-            <summary>Is this just three BA days a month at a day rate?</summary>
-            <p>
-              No. It is retained access — priority, availability and senior
-              delivery across the month — packaged as a subscription. The value
-              is reliable senior capacity on demand, not a discounted day rate.
-            </p>
-          </details>
+          <FaqItem question="Do I have to commit to a subscription?">
+            No. Start with a fixed-scope project — the Readiness Review is the
+            usual first step — and move to retained only if it makes sense.
+          </FaqItem>
 
-          <details>
-            <summary>What if we do not use the time one month?</summary>
-            <p>
-              It does not roll over. You are holding senior capacity that is
-              ready when you need it — like a subscription, you pay for access
-              within the period, not for every minute used.
-            </p>
-          </details>
+          <FaqItem question="Is the subscription just three days a month at a day rate?">
+            No. It is retained access — priority, availability and senior
+            delivery across the month. The value is reliable senior capacity on
+            demand, not a discounted day rate.
+          </FaqItem>
 
-          <details>
-            <summary>Can you work in our hours?</summary>
-            <p>
-              Polish working hours overlap almost the entire UK and European
-              business day, so you get responsive support in real time — with
-              the option to work asynchronously when that suits you better.
-            </p>
-          </details>
+          <FaqItem question="What if we do not use the time one month?">
+            It does not roll over. You are holding senior capacity ready for when you need it.
+          </FaqItem>
 
-          <details>
-            <summary>Do we own the work?</summary>
-            <p>Yes. Documents, templates and methods stay with you.</p>
-          </details>
+          <FaqItem question="Can you work in our hours?">
+            Polish working hours overlap almost the entire UK and European
+            business day — real-time when you want it, asynchronous when that suits.
+          </FaqItem>
 
-          <details>
-            <summary>Can you handle regulated or sensitive work?</summary>
-            <p>
-              Yes — experience spans regulated banking, KYC/AML, audit-trail
-              design and operational-resilience regulation. Clients are kept
-              anonymous by default.
-            </p>
-          </details>
-
-          <details>
-            <summary>Do you use AI?</summary>
-            <p>
-              Yes, for accelerated preparation and drafting — always with senior
-              review and accountability. On lower tiers this is how delivery
-              stays efficient.
-            </p>
-          </details>
+          <FaqItem question="Can you handle regulated or sensitive work?">
+            Yes — banking, KYC/AML, audit-trail design and operational-resilience
+            regulation. NDA as standard; clients kept anonymous.
+          </FaqItem>
         </div>
       </div>
     </section>
 
-    <section id="guide" data-section-name="Guide download" class="section">
+    <LeadMagnet lang="en" contactEmail={contactEmail} action={leadMagnetAction} />
+
+    <section id="contact" data-section-name="Ready?" class="section final-cta">
       <div class="container">
-        <div class="guide-card">
-          <p class="eyebrow">Not ready to talk?</p>
-          <h2>Take the thinking with you.</h2>
-          <p>
-            Get the guide — <em>The hidden cost of unclear requirements</em> —
-            plus a one-page Definition of Ready checklist.
-          </p>
-
-          <form
-            class="lead-form"
-            method="POST"
-            action={guideAction}
-            data-lead-form
-            data-analytics-asset="unclear_requirements_guide"
-            data-analytics-location="guide"
-          >
-            <input
-              type="email"
-              name="email"
-              autocomplete="email"
-              placeholder="your email"
-              aria-label="Email address"
-              required
-            />
-            <button class="button primary" type="submit">Send it to me</button>
-          </form>
-
-          <p class="form-note">
-            No spam. One useful note a month, unsubscribe anytime.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" data-section-name="Ready to talk?" class="section final-cta muted">
-      <div class="container">
-        <p class="eyebrow">Ready to talk?</p>
-        <h2>A 30-minute scoping call is the quickest way to see if this fits.</h2>
-        <p>We will look at where the gap is and which tier makes sense.</p>
+        <p class="eyebrow">Ready?</p>
+        <h2>A 30-minute call, or a fixed-scope Readiness Review — whichever fits.</h2>
+        <p>
+          Either way, you will get an honest read on where the gap is.
+        </p>
 
         <div class="actions">
-          <a
-            class="button primary"
+          <Button
             href={bookingLink}
-            data-analytics-click="book_call_footer"
-            data-analytics-location="footer"
+            variant="primary"
+            analyticsClick="book_call_footer_en"
+            gaEvent="cta_book_click"
+            gaLocation="footer"
           >
             Book a 30-minute call
-          </a>
+          </Button>
 
-          <a
-            class="button secondary"
+          <Button
+            href={readinessReviewLink}
+            variant="secondary"
+            analyticsClick="readiness_review_footer_en"
+            gaEvent="readiness_review_start"
+            gaProduct="readiness_review"
+            gaLocation="footer"
+          >
+            Start with a Readiness Review
+          </Button>
+
+          <Button
             href={`mailto:${contactEmail}`}
-            data-analytics-click="email_contact_footer"
-            data-analytics-location="footer"
+            variant="ghost"
+            analyticsClick="email_footer_en"
+            gaEvent="outbound_click"
+            gaLocation="footer"
           >
             Email {contactEmail}
-          </a>
+          </Button>
         </div>
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>BAaaS · NDA as standard · Clients kept anonymous by default</p>
+        <a href={`mailto:${contactEmail}`} data-ga-event="outbound_click" data-analytics-click="email_footer_link_en">
+          {contactEmail}
+        </a>
+      </div>
+    </footer>
   </main>
 </Layout>

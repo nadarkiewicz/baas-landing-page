@@ -1,71 +1,86 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { siteConfig } from "../../config/site";
+import Button from "../../components/Button.astro";
+import LanguageSwitch from "../../components/LanguageSwitch.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import PricingCard from "../../components/PricingCard.astro";
+import ProofCard from "../../components/ProofCard.astro";
+import FaqItem from "../../components/FaqItem.astro";
+import LeadMagnet from "../../components/LeadMagnet.astro";
 
-const contactEmail = siteConfig.contactEmail;
-const bookingLink = siteConfig.bookingLink.replace(
-  "30-minute%20call",
-  "30-minutowa%20rozmowa"
-);
-const leadMagnetAction = siteConfig.leadMagnetAction;
-const leadMagnetFallback = `mailto:${contactEmail}?subject=Proszę%20o%20przewodnik%20BAaaS`;
-const guideAction = leadMagnetAction || leadMagnetFallback;
+const { contactEmail, bookingLink, readinessReviewLink, leadMagnetAction } = siteConfig;
 ---
 
 <Layout
-  title="BAaaS — Analiza biznesowa na poziomie seniora, w abonamencie"
-  description="Stały dostęp do doświadczonego analityka biznesowego z tytułem MBA — ponad 17 lat w bankowości, IT, retailu i e-commerce."
+  title="BAaaS — Doświadczone wsparcie delivery dla zespołów regulowanych i fintech"
+  description="Senior od wymagań, decyzji i dokumentacji — w abonamencie lub jako projekty o ustalonym zakresie."
   lang="pl"
 >
   <main>
-    <nav class="language-switch" aria-label="Przełącznik języka">
-      <a href="/" data-analytics-click="language_en">EN</a>
-      <a href="/pl/" aria-current="page" data-analytics-click="language_pl_current">PL</a>
-    </nav>
+    <LanguageSwitch current="pl" />
+
+    <div class="sticky-cta">
+      <div class="sticky-cta-inner">
+        <span class="sticky-title">BAaaS · Wsparcie delivery i wymagań</span>
+        <Button
+          href={bookingLink}
+          variant="primary"
+          analyticsClick="book_call_sticky_pl"
+          gaEvent="cta_book_click"
+          gaLocation="sticky"
+        >
+          Umów 30-minutową rozmowę
+        </Button>
+      </div>
+    </div>
 
     <section id="hero" data-section-name="Sekcja główna" class="section hero">
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">BAaaS</p>
-          <h1>Analiza biznesowa na poziomie seniora — w abonamencie.</h1>
+          <h1>Doświadczone wsparcie delivery dla zespołów regulowanych i fintech.</h1>
           <p class="hero-lead">
-            Stały dostęp do doświadczonego analityka biznesowego z tytułem MBA —
-            ponad 17 lat w bankowości, IT, retailu i e-commerce. Na miesiące, w
-            których potrzebujesz wsparcia seniora, bez zatrudniania na etat.
+            Senior od wymagań, decyzji i dokumentacji — w abonamencie lub jako
+            projekty o ustalonym zakresie. Ponad 17 lat w bankowości, finansach
+            regulowanych i złożonym IT, bez zatrudniania na etat.
           </p>
 
           <div class="actions">
-            <a
-              class="button primary"
+            <Button
               href={bookingLink}
-              data-analytics-click="book_call_hero_pl"
-              data-analytics-location="hero"
+              variant="primary"
+              analyticsClick="book_call_hero_pl"
+              gaEvent="cta_book_click"
+              gaLocation="hero"
             >
               Umów 30-minutową rozmowę
-            </a>
-            <a
-              class="text-link"
-              href="#guide"
-              data-analytics-click="get_guide_hero_pl"
-              data-analytics-location="hero"
-              data-analytics-asset="unclear_requirements_guide_pl"
+            </Button>
+
+            <Button
+              href={readinessReviewLink}
+              variant="secondary"
+              analyticsClick="readiness_review_hero_pl"
+              gaEvent="readiness_review_start"
+              gaProduct="readiness_review"
+              gaLocation="hero"
             >
-              albo pobierz przewodnik → Ukryty koszt niejasnych wymagań
-            </a>
+              Zacznij od Przeglądu Gotowości →
+            </Button>
           </div>
 
-          <p class="cred-line">
-            17+ lat · Bankowość · IT · Retail · Finanse regulowane
+          <p class="trust-strip">
+            17+ lat · Bankowość · Fintech · Regulowane IT · DORA / KYC-AML
           </p>
         </div>
 
         <aside class="hero-card" aria-label="Podsumowanie BAaaS">
-          <p class="card-label">Stały dostęp do senior BA</p>
+          <p class="card-label">Senior tam, gdzie zaczyna się problem</p>
           <ul>
-            <li>Analiza na poziomie principal / senior</li>
-            <li>Dokumenty, warsztaty i wsparcie decyzji</li>
-            <li>Dla zespołów delivery, produktu i portfela projektów</li>
-            <li>Abonament miesięczny, nie rozliczenie godzinowe</li>
+            <li>Wymagania, decyzje i dokumentacja</li>
+            <li>Projekty o ustalonym zakresie albo miesięczny abonament</li>
+            <li>Dla zespołów regulowanych, fintech i złożonego IT</li>
+            <li>Jasne rezultaty, konkretne wejścia, mierzalne intencje</li>
           </ul>
         </aside>
       </div>
@@ -75,219 +90,270 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
       <div class="container two-column">
         <div>
           <p class="eyebrow">Problem</p>
-          <h2>Prowadzisz delivery, portfel projektów albo produkt.</h2>
+          <h2>Luka zwykle leży powyżej samej budowy.</h2>
         </div>
 
         <div class="content-stack">
           <p>
-            Twoi ludzie — od juniorów po seniorów — zbierają wymagania,
-            ustalają priorytety i rozmawiają z interesariuszami. Ale nikt
-            doświadczony nie odpowiada za analizę. Decyzje się przeciągają.
-            Dokumentacja zostaje z tyłu. Nawet mocne osoby, których główna
-            ekspertyza leży gdzie indziej, potrzebują doświadczonego partnera
-            do rozmowy.
+            Gdy delivery się opóźnia, decyzje stoją, a dokumentacja nie
+            przeszłaby audytu, przyczyna zwykle leży <strong>powyżej samej budowy</strong> —
+            nikt doświadczony nie odpowiada za wymagania i decyzje.
           </p>
 
           <p>
-            <strong>Albo masz cele związane z rozwojem kompetencji.</strong>
-            Potrzebujesz praktycznej wiedzy analitycznej, która zostanie w
-            firmie — a nie kolejnego ogólnego szkolenia, po którym nic nie
-            zostaje.
+            <strong>Jeśli prowadzisz delivery, produkt lub transformację:</strong>
+            dobrzy ludzie ogarniają wymagania i interesariuszy „przy okazji”,
+            ale nikt doświadczony nie trzyma całości. Decyzje czekają. Rosną
+            przeróbki. Gotowość na audyt się obniża.
           </p>
 
           <p>
-            Tak czy inaczej, zatrudnienie principala BA na etat jest wolne,
-            drogie i większe, niż potrzebujesz co miesiąc.
+            <strong>Jeśli masz cele kompetencyjne lub presję regulacyjną:</strong>
+            potrzebujesz rygoru seniora, który zostaje w zespole — nie ogólnego
+            szkolenia i nie wolnego, drogiego etatu, którego potrzebujesz tylko
+            w połowie.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" data-section-name="Jak to działa" class="section muted">
+    <section id="two-ways" data-section-name="Dwa sposoby współpracy" class="section muted">
       <div class="container">
-        <p class="eyebrow">Jak to działa</p>
-        <h2>Myśl o tym jak o subskrypcji, nie o rozliczeniu godzinowym.</h2>
-        <p class="hero-lead">
-          Rezerwujesz sobie czas doświadczonego analityka na dany miesiąc i
-          używasz go tam, gdzie jest luka.
+        <p class="eyebrow">Dwa sposoby współpracy</p>
+        <h2>Zacznij od projektu albo zarezerwuj czas seniora miesięcznie.</h2>
+
+        <div class="steps">
+          <article>
+            <span>1</span>
+            <h3>Zacznij od projektu o ustalonym zakresie.</h3>
+            <p>
+              Nazwany zakres pracy, stała cena, jasny rezultat. Najprostszy
+              sposób, by szybko zobaczyć wartość i sprawdzić, jak pracuję.
+            </p>
+          </article>
+
+          <article>
+            <span>2</span>
+            <h3>Zarezerwuj czas seniora miesięcznie.</h3>
+            <p>
+              Stały dostęp do wymagań, decyzji i dokumentacji w Twojej pracy —
+              około trzech dni seniora w miesiącu, użytych tam, gdzie jest luka.
+            </p>
+          </article>
+
+          <article>
+            <span>3</span>
+            <h3>Przejdź na abonament, gdy to się zwraca.</h3>
+            <p>
+              Większość klientów zaczyna od projektu i przechodzi na abonament,
+              gdy to się zwraca.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" data-section-name="Produkty o ustalonym zakresie" class="section">
+      <div class="container">
+        <p class="eyebrow">Produkty o ustalonym zakresie</p>
+        <h2>Ustalony zakres, stała cena, praca seniora.</h2>
+        <p>Kup pojedynczy — albo wykorzystaj w ramach abonamentowego miesiąca.</p>
+
+        <div class="product-grid">
+          <ProductCard
+            title="Przegląd Gotowości Delivery"
+            price="4 800 zł"
+            productKey="readiness_review"
+            ctaHref={readinessReviewLink}
+            ctaText="Zacznij tutaj"
+            badge="Najlepszy pierwszy krok"
+            featured
+            lang="pl"
+          >
+            Doświadczone spojrzenie na to, gdzie wymagania, decyzje i delivery
+            po cichu Cię kosztują, z priorytetowym planem naprawy. Zaliczane na
+            poczet pierwszego miesiąca, jeśli w ciągu 30 dni przejdziesz na abonament.
+          </ProductCard>
+
+          <ProductCard
+            title="Regulacja w wymagania"
+            price="od 14 400 zł"
+            productKey="regulation_requirements"
+            ctaHref={bookingLink}
+            ctaText="Porozmawiajmy"
+            lang="pl"
+          >
+            Zamień regulację — DORA, KYC/AML, nowy wymóg od regulatora — w jasne
+            reguły biznesowe i listę zmian zespół po zespole. Złożone, zrobione
+            użytecznym.
+          </ProductCard>
+
+          <ProductCard
+            title="Reset wymagań"
+            price="od 9 600 zł"
+            productKey="requirements_reset"
+            ctaHref={bookingLink}
+            ctaText="Porozmawiajmy"
+            lang="pl"
+          >
+            Jasne, testowalne wymagania i wspólna definicja gotowości, żeby
+            zespół przestał spierać się o to samo i budować pracę dwa razy.
+          </ProductCard>
+
+          <ProductCard
+            title="Dokument decyzyjny"
+            price="od 4 800 zł"
+            productKey="decision_paper"
+            ctaHref={bookingLink}
+            ctaText="Porozmawiajmy"
+            lang="pl"
+          >
+            Weź decyzję, która stoi od tygodni, do jasnych opcji, uczciwych
+            kompromisów i rekomendacji, na której zespół naprawdę może działać.
+          </ProductCard>
+        </div>
+
+        <div class="actions">
+          <Button
+            href={bookingLink}
+            variant="primary"
+            analyticsClick="book_call_products_pl"
+            gaEvent="cta_book_click"
+            gaLocation="products"
+          >
+            Sprawdź, co pasuje → Umów 30-minutową rozmowę
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" data-section-name="Abonament miesięczny" class="section dark">
+      <div class="container">
+        <p class="eyebrow">Albo zarezerwuj czas seniora miesięcznie</p>
+        <h2>Przy stałej potrzebie abonament rezerwuje czas seniora co miesiąc.</h2>
+        <p>
+          Czas seniora jest użyty elastycznie tam, gdzie pomaga najbardziej.
         </p>
 
         <div class="steps">
           <article>
             <span>1</span>
             <h3>Wybierz pakiet.</h3>
-            <p>
-              Core, Pro albo Prime — ta sama usługa w trzech poziomach
-              priorytetu i zakresu.
-            </p>
+            <p>Core, Pro albo Prime — ta sama usługa w trzech poziomach priorytetu i zakresu.</p>
           </article>
 
           <article>
             <span>2</span>
-            <h3>Ustal miks na dany miesiąc.</h3>
+            <h3>Ustal miks na miesiąc.</h3>
             <p>
-              W ramach około 3 dni pracy seniora dobieramy właściwą mieszankę:
-              dokument, warsztat, doradztwo na bieżąco, wsparcie decyzji i
-              follow-up.
+              W ramach ~3 dni seniora: dokument, warsztat, doradztwo na
+              bieżąco, wsparcie decyzji.
             </p>
           </article>
 
           <article>
             <span>3</span>
             <h3>Wszystko zostaje u Ciebie.</h3>
-            <p>
-              Dokumenty, szablony i metody zostają w firmie. Wiedza nie znika,
-              gdy kończy się miesiąc.
-            </p>
+            <p>Dokumenty, szablony i metody zostają w firmie.</p>
           </article>
         </div>
 
         <p class="wide-note">
-          Płacisz za stały dostęp i priorytet — nie za godziny na liczniku.
-          Dostępność jest świadomie ograniczona, dzięki czemu jakość pozostaje
-          wysoka. Niewykorzystany czas nie przechodzi na kolejny miesiąc —
-          rezerwujemy ten czas dla Ciebie co miesiąc.
+          Płacisz za stały dostęp i priorytet, nie za godziny. Dostępność jest
+          świadomie ograniczona, dzięki czemu jakość pozostaje wysoka.
+          Niewykorzystany czas nie przechodzi dalej — rezerwujemy go dla Ciebie.
         </p>
-      </div>
-    </section>
-
-    <section id="included" data-section-name="Co jest w cenie" class="section">
-      <div class="container two-column">
-        <div>
-          <p class="eyebrow">Co jest w cenie</p>
-          <h2>Praktyczne wsparcie seniora, dobrane do danego miesiąca.</h2>
-        </div>
-
-        <div class="list-card">
-          <ul class="check-list">
-            <li>
-              <strong>Jeden dokument analityczny lub menedżerski w miesiącu</strong>,
-              w uzgodnionym dniu — brief wymagań, mapa procesu, dokument
-              decyzyjny, rozbicie backlogu, framework priorytetyzacji albo
-              pakiet warsztatowy.
-            </li>
-            <li>
-              <strong>Dostępność na bieżąco</strong> w godzinach pracy — mniej
-              więcej dwa dni w tygodniu.
-            </li>
-            <li>
-              <strong>Sesja ad hoc 2 h w ciągu 48 godzin</strong>, zależnie od
-              pakietu.
-            </li>
-            <li>
-              <strong>Sesja 4–6 h w ciągu 7 dni</strong>, zależnie od pakietu.
-            </li>
-            <li>
-              <strong>Warsztaty, facylitacja, wsparcie decyzji, szablony i
-              follow-up</strong> — dobrane do miesiąca i pakietu.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="not-included" data-section-name="Czego nie obejmuje" class="section muted">
-      <div class="container two-column">
-        <div>
-          <p class="eyebrow">Czego nie obejmuje</p>
-          <h2>Jasne granice, bez ukrytych oczekiwań.</h2>
-        </div>
-
-        <div class="list-card">
-          <ul class="plain-list">
-            <li>Nieograniczonego wsparcia ani gwarancji natychmiastowej realizacji.</li>
-            <li>Przenoszenia niewykorzystanego czasu.</li>
-            <li>
-              Dużych, wielotygodniowych programów ani pracy ponad miesięczny
-              zakres. Takie rzeczy są wyceniane osobno.
-            </li>
-            <li>
-              Podróży i pracy na miejscu. W Prime możliwa jest kwartalna wizyta;
-              koszty dojazdu i noclegu są po Twojej stronie.
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
 
     <section id="pricing" data-section-name="Cennik" class="section dark">
       <div class="container">
         <p class="eyebrow">Cennik</p>
-        <h2>Prosta miesięczna subskrypcja. Cena za stały dostęp, nie za godziny.</h2>
+        <h2>Miesięczny dostęp do wymagań, decyzji i dokumentacji.</h2>
 
-        <div class="price-row">
-          <article>
-            <h3>Core</h3>
-            <p class="price">od 14 400 zł / miesiąc + VAT</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_core_pl"
-              data-analytics-tier="core"
-              data-analytics-location="pricing"
-            >
-              Omów Core
-            </a>
-          </article>
+        <div class="pricing-grid">
+          <PricingCard
+            tier="Core"
+            price="od 14 400 zł / miesiąc + VAT"
+            description="Uporządkowany dostęp tam, gdzie potrzeba jest jasna, a praca może być bardziej asynchroniczna."
+            ctaHref={bookingLink}
+            ctaText="Omów Core"
+            lang="pl"
+          />
 
-          <article class="featured">
-            <p class="badge">Najczęściej wybierany</p>
-            <h3>Pro</h3>
-            <p class="price">od 17 500 zł / miesiąc + VAT</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_pro_pl"
-              data-analytics-tier="pro"
-              data-analytics-location="pricing"
-            >
-              Omów Pro
-            </a>
-          </article>
+          <PricingCard
+            tier="Pro"
+            price="od 17 500 zł / miesiąc + VAT"
+            description="Praktyczna równowaga dostępu, responsywności i dopasowanego wsparcia przy stałej presji delivery."
+            badge="Najczęściej wybierany"
+            featured
+            ctaHref={bookingLink}
+            ctaText="Omów Pro"
+            lang="pl"
+          />
 
-          <article>
-            <h3>Prime</h3>
-            <p class="price">od 22 000 zł / miesiąc + VAT</p>
-            <p>Albo wycena pod potrzeby.</p>
-            <a
-              class="button light full"
-              href={bookingLink}
-              data-analytics-event="select_tier"
-              data-analytics-click="select_prime_pl"
-              data-analytics-tier="prime"
-              data-analytics-location="pricing"
-            >
-              Omów Prime
-            </a>
-          </article>
+          <PricingCard
+            tier="Prime"
+            price="od 22 000 zł / miesiąc + VAT"
+            description="Wyższy priorytet, bliższe zaangażowanie i bardziej dopasowane wsparcie. Albo wycena pod potrzeby."
+            ctaHref={bookingLink}
+            ctaText="Omów Prime"
+            lang="pl"
+          />
         </div>
 
         <p class="pricing-note">
-          Umowa miesięczna lub roczna z rabatem za zobowiązanie. VAT doliczany
-          tam, gdzie ma zastosowanie. Przy współpracy transgranicznej B2B zwykle
-          stosuje się odwrotne obciążenie.
+          Umowa miesięczna lub roczna z rabatem za zobowiązanie.
+          <strong> Umowa miesięczna — bez długiego zobowiązania. Zacznij od jednego miesiąca i sprawdź.</strong>
         </p>
 
-        <p class="pricing-note">
-          Umowa miesięczna — bez długiego zobowiązania. Zacznij od jednego
-          miesiąca i sprawdź.
-        </p>
+        <div class="actions">
+          <Button
+            href={bookingLink}
+            variant="light"
+            analyticsClick="book_call_pricing_pl"
+            gaEvent="cta_book_click"
+            gaLocation="pricing"
+          >
+            Umów 30-minutową rozmowę
+          </Button>
+        </div>
+      </div>
+    </section>
 
-        <p class="pricing-note subtle">
-          Niewykorzystany czas nie przechodzi dalej — to cena za to, że
-          doświadczony analityk jest dla Ciebie gotowy co miesiąc.
-        </p>
+    <section id="included" data-section-name="Co obejmuje abonament" class="section muted">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Co obejmuje abonament</p>
+          <h2>Jasne miesięczne wsparcie i jasne granice.</h2>
+        </div>
 
-        <a
-          class="button light"
-          href={bookingLink}
-          data-analytics-click="book_call_pricing_pl"
-          data-analytics-location="pricing"
-        >
-          Umów 30-minutową rozmowę
-        </a>
+        <div class="list-card">
+          <ul class="check-list">
+            <li>Jeden dokument analityczny lub menedżerski w miesiącu, w uzgodnionym dniu.</li>
+            <li>Dostępność na bieżąco w godzinach pracy — mniej więcej dwa dni w tygodniu.</li>
+            <li>Sesje ad hoc i dłuższe w czasach reakcji dla Twojego pakietu.</li>
+            <li>Warsztaty, facylitacja, wsparcie decyzji, szablony i follow-up.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="not-included" data-section-name="Czego nie obejmuje" class="section">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">Czego nie obejmuje</p>
+          <h2>Bez ukrytej obietnicy nieograniczonej dostępności.</h2>
+        </div>
+
+        <div class="list-card">
+          <ul class="plain-list">
+            <li>Nieograniczonego wsparcia ani gwarancji natychmiastowej realizacji.</li>
+            <li>Przenoszenia niewykorzystanego czasu.</li>
+            <li>Dużych, wielotygodniowych programów. Są wyceniane osobno.</li>
+            <li>Podróży i pracy na miejscu. W Prime możliwa jest kwartalna wizyta; koszty dojazdu po Twojej stronie.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -295,62 +361,34 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
       <div class="container two-column">
         <div>
           <p class="eyebrow">Kto za tym stoi</p>
-          <h2>Analityk biznesowy na poziomie senior / principal.</h2>
+          <h2>Praktyk na poziomie senior / principal.</h2>
           <p>
-            MBA w obszarze innowacji i analizy danych. Ponad 17 lat
-            doświadczenia, w tym ponad 4 lata w bankowości i finansach
-            regulowanych.
-          </p>
-          <p>
-            Swobodnie porusza się w środowiskach regulowanych: wymagania,
-            projektowanie ścieżki audytowej, jakość dokumentacji i
-            identyfikowalność decyzji.
+            MBA. Ponad 17 lat, w tym ponad 4 w bankowości i finansach
+            regulowanych. Swobodnie tam, gdzie liczy się jakość dokumentacji,
+            ścieżki audytowe i identyfikowalność decyzji. Klienci domyślnie anonimowi.
           </p>
         </div>
 
         <div class="proof-list">
-          <article>
-            <h3>Regulacja DORA</h3>
-            <p>
-              Przełożył regulację DORA na dokument reguł biznesowych używany
-              przez 35–50 product ownerów w portfelu produktowym dużego banku.
-            </p>
-          </article>
+          <ProofCard title="Regulacja DORA jako reguły biznesowe">
+            Przełożył regulację DORA na reguły biznesowe używane przez 35–50
+            product ownerów w dużym banku.
+          </ProofCard>
 
-          <article>
-            <h3>Regulowana platforma telekomunikacyjna pod M&A</h3>
-            <p>
-              Principal BA przy regulowanej platformie telekomunikacyjnej pod
-              M&A — ograniczył przenoszenie prawie ukończonych stories między
-              sprintami z 10–20% do niemal zera i zmniejszył późne poprawki
-              analityczne o około połowę.
-            </p>
-          </article>
+          <ProofCard title="Regulowana platforma telekomunikacyjna pod M&A">
+            Principal przy platformie pod M&A — ograniczył przenoszenie prawie
+            ukończonej pracy z 10–20% do niemal zera i zmniejszył późne przeróbki o około połowę.
+          </ProofCard>
 
-          <article>
-            <h3>Train KYC/AML</h3>
-            <p>
-              Koordynował wymagania w wielozespołowym trainie KYC/AML:
-              onboarding, monitoring AML, screening sankcyjny i PEP oraz
-              raportowanie regulacyjne.
-            </p>
-          </article>
+          <ProofCard title="Wielozespołowy program KYC/AML">
+            Koordynował wymagania w obszarach onboardingu, monitoringu AML,
+            screeningu sankcyjnego i PEP oraz raportowania regulacyjnego.
+          </ProofCard>
 
-          <article>
-            <h3>Omnichannelowy model CLV</h3>
-            <p>
-              Zbudował omnichannelowy model wartości klienta dla dużego klienta
-              retail; podejście zaprezentował na spotkaniu IAB.
-            </p>
-          </article>
-
-          <article>
-            <h3>Rozwój ludzi</h3>
-            <p>
-              Pomógł rozwinąć około 46 osób i przeszkolił około 30 kolejnych z
-              analizy i pracy produktowej.
-            </p>
-          </article>
+          <ProofCard title="Omnichannelowy model wartości klienta">
+            Zbudował omnichannelowy model wartości klienta dla dużego klienta retail;
+            zaprezentował go na spotkaniu IAB.
+          </ProofCard>
         </div>
       </div>
     </section>
@@ -358,127 +396,88 @@ const guideAction = leadMagnetAction || leadMagnetFallback;
     <section id="faq" data-section-name="Pytania" class="section muted">
       <div class="container">
         <p class="eyebrow">Pytania</p>
-        <h2>Najczęstsze pytania przed rozmową.</h2>
+        <h2>Najczęstsze pytania przed rozmową albo pierwszym projektem.</h2>
 
         <div class="faq-list">
-          <details>
-            <summary>Czy to po prostu trzy dni analityka w miesiącu w stawce dziennej?</summary>
-            <p>
-              Nie. To stały dostęp — priorytet, dostępność i praca seniora w
-              ciągu miesiąca — w formie subskrypcji. Wartością jest pewny
-              dostęp do seniora wtedy, gdy go potrzebujesz, a nie obniżona
-              stawka dzienna.
-            </p>
-          </details>
+          <FaqItem question="Czy muszę zobowiązywać się do abonamentu?">
+            Nie. Zacznij od projektu o ustalonym zakresie — zwykle od Przeglądu
+            Gotowości — i przejdź na abonament tylko, jeśli to ma sens.
+          </FaqItem>
 
-          <details>
-            <summary>Co, jeśli w danym miesiącu nie wykorzystamy czasu?</summary>
-            <p>
-              Nie przechodzi dalej. Rezerwujesz sobie czas doświadczonego
-              analityka, gotowy, gdy będzie potrzebny — jak w subskrypcji
-              płacisz za dostęp w danym okresie, nie za każdą zużytą minutę.
-            </p>
-          </details>
+          <FaqItem question="Czy abonament to po prostu trzy dni w miesiącu w stawce dziennej?">
+            Nie. To stały dostęp — priorytet, dostępność i praca seniora w ciągu
+            miesiąca. Wartością jest pewny dostęp do seniora, nie obniżona stawka dzienna.
+          </FaqItem>
 
-          <details>
-            <summary>Czy możesz pracować w naszych godzinach?</summary>
-            <p>
-              Polskie godziny pracy pokrywają się niemal z całym dniem roboczym
-              w Wielkiej Brytanii i Europie, więc dostajesz wsparcie w czasie
-              rzeczywistym — z opcją pracy asynchronicznej, gdy tak jest
-              wygodniej.
-            </p>
-          </details>
+          <FaqItem question="Co, jeśli w danym miesiącu nie wykorzystamy czasu?">
+            Nie przechodzi dalej. Rezerwujesz sobie czas seniora, gotowy, gdy będzie potrzebny.
+          </FaqItem>
 
-          <details>
-            <summary>Czy praca należy do nas?</summary>
-            <p>Tak. Dokumenty, szablony i metody zostają u Ciebie.</p>
-          </details>
+          <FaqItem question="Czy możesz pracować w naszych godzinach?">
+            Polskie godziny pracy pokrywają się niemal z całym dniem roboczym w
+            UK i Europie — w czasie rzeczywistym, gdy chcesz, asynchronicznie, gdy tak wygodniej.
+          </FaqItem>
 
-          <details>
-            <summary>Czy poradzisz sobie z pracą regulowaną lub wrażliwą?</summary>
-            <p>
-              Tak — doświadczenie obejmuje regulowaną bankowość, KYC/AML,
-              projektowanie ścieżki audytowej i regulacje odporności
-              operacyjnej. Klienci pozostają domyślnie anonimowi.
-            </p>
-          </details>
-
-          <details>
-            <summary>Czy korzystasz z AI?</summary>
-            <p>
-              Tak — do przyspieszonego przygotowania i szkicowania, zawsze z
-              nadzorem i odpowiedzialnością seniora. W niższych pakietach dzięki
-              temu realizacja pozostaje efektywna.
-            </p>
-          </details>
+          <FaqItem question="Czy poradzisz sobie z pracą regulowaną lub wrażliwą?">
+            Tak — bankowość, KYC/AML, ścieżka audytowa i regulacje odporności
+            operacyjnej. NDA standardowo; klienci anonimowi.
+          </FaqItem>
         </div>
       </div>
     </section>
 
-    <section id="guide" data-section-name="Przewodnik" class="section">
+    <LeadMagnet lang="pl" contactEmail={contactEmail} action={leadMagnetAction} />
+
+    <section id="contact" data-section-name="Gotowy?" class="section final-cta">
       <div class="container">
-        <div class="guide-card">
-          <p class="eyebrow">Nie na teraz?</p>
-          <h2>Zabierz to ze sobą.</h2>
-          <p>
-            Pobierz przewodnik — <em>Ukryty koszt niejasnych wymagań</em> — i
-            jednostronicową listę Definicji Gotowości.
-          </p>
-
-          <form
-            class="lead-form"
-            method="POST"
-            action={guideAction}
-            data-lead-form
-            data-analytics-asset="unclear_requirements_guide_pl"
-            data-analytics-location="guide"
-          >
-            <input
-              type="email"
-              name="email"
-              autocomplete="email"
-              placeholder="Twój e-mail"
-              aria-label="Adres e-mail"
-              required
-            />
-            <button class="button primary" type="submit">Wyślij mi</button>
-          </form>
-
-          <p class="form-note">
-            Bez spamu. Jedna przydatna wiadomość miesięcznie, w każdej chwili
-            możesz się wypisać.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" data-section-name="Porozmawiajmy" class="section final-cta muted">
-      <div class="container">
-        <p class="eyebrow">Porozmawiajmy</p>
-        <h2>30-minutowa rozmowa to najszybszy sposób, by sprawdzić, czy to pasuje.</h2>
-        <p>Spojrzymy na to, gdzie jest luka, i który pakiet ma sens.</p>
+        <p class="eyebrow">Gotowy?</p>
+        <h2>30-minutowa rozmowa albo Przegląd Gotowości o ustalonym zakresie — co pasuje.</h2>
+        <p>
+          Tak czy inaczej dostaniesz szczerą ocenę, gdzie jest luka.
+        </p>
 
         <div class="actions">
-          <a
-            class="button primary"
+          <Button
             href={bookingLink}
-            data-analytics-click="book_call_footer_pl"
-            data-analytics-location="footer"
+            variant="primary"
+            analyticsClick="book_call_footer_pl"
+            gaEvent="cta_book_click"
+            gaLocation="footer"
           >
             Umów 30-minutową rozmowę
-          </a>
+          </Button>
 
-          <a
-            class="button secondary"
+          <Button
+            href={readinessReviewLink}
+            variant="secondary"
+            analyticsClick="readiness_review_footer_pl"
+            gaEvent="readiness_review_start"
+            gaProduct="readiness_review"
+            gaLocation="footer"
+          >
+            Zacznij od Przeglądu Gotowości
+          </Button>
+
+          <Button
             href={`mailto:${contactEmail}`}
-            data-analytics-click="email_contact_footer_pl"
-            data-analytics-location="footer"
+            variant="ghost"
+            analyticsClick="email_footer_pl"
+            gaEvent="outbound_click"
+            gaLocation="footer"
           >
             Napisz: {contactEmail}
-          </a>
+          </Button>
         </div>
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>BAaaS · NDA standardowo · Klienci domyślnie anonimowi</p>
+        <a href={`mailto:${contactEmail}`} data-ga-event="outbound_click" data-analytics-click="email_footer_link_pl">
+          {contactEmail}
+        </a>
+      </div>
+    </footer>
   </main>
 </Layout>
