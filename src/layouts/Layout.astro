@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config/site";
+import "../styles/global.css";
 
 const {
   title = "BAaaS",
@@ -50,9 +51,23 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
         return "en";
       };
 
-      const sendAnalyticsEvent = (eventName, params) => {
+      const cleanParams = (params) =>
+        Object.fromEntries(
+          Object.entries(params).filter(([, value]) => value !== undefined && value !== "")
+        );
+
+      const sendAnalyticsEvent = (eventName, params = {}) => {
         if (typeof window.gtag !== "function") return;
-        window.gtag("event", eventName, params);
+
+        window.gtag(
+          "event",
+          eventName,
+          cleanParams({
+            language: getLanguage(),
+            page_path: window.location.pathname,
+            ...params,
+          })
+        );
       };
 
       if ("IntersectionObserver" in window) {
@@ -73,9 +88,13 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
               sendAnalyticsEvent("section_view", {
                 section_id: sectionId,
                 section_name: section.dataset.sectionName || sectionId,
-                language: getLanguage(),
-                page_path: window.location.pathname,
               });
+
+              if (sectionId === "pricing") {
+                sendAnalyticsEvent("view_pricing", {
+                  location: "pricing_section",
+                });
+              }
             });
           },
           {
@@ -90,10 +109,22 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
 
       document.querySelectorAll("[data-analytics-click]").forEach((element) => {
         element.addEventListener("click", () => {
-          sendAnalyticsEvent("cta_click", {
+          const eventName = element.dataset.analyticsEvent || "cta_click";
+
+          sendAnalyticsEvent(eventName, {
             cta_name: element.dataset.analyticsClick,
-            language: getLanguage(),
-            page_path: window.location.pathname,
+            location: element.dataset.analyticsLocation,
+            asset: element.dataset.analyticsAsset,
+            tier: element.dataset.analyticsTier,
+          });
+        });
+      });
+
+      document.querySelectorAll("[data-lead-form]").forEach((form) => {
+        form.addEventListener("submit", () => {
+          sendAnalyticsEvent("lead_magnet_submit", {
+            asset: form.dataset.analyticsAsset || "unclear_requirements_guide",
+            location: form.dataset.analyticsLocation || "guide_section",
           });
         });
       });
