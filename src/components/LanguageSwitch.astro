@@ -13,8 +13,7 @@ const { current } = Astro.props;
     href="/"
     aria-current={current === "en" ? "page" : undefined}
     data-ga-event="language_switch"
-    data-ga-location="header"
-    data-analytics-click={current === "en" ? "language_en_current" : "language_en"}
+    data-ga-label="en"
   >
     EN
   </a>
@@ -23,8 +22,7 @@ const { current } = Astro.props;
     href="/pl/"
     aria-current={current === "pl" ? "page" : undefined}
     data-ga-event="language_switch"
-    data-ga-location="header"
-    data-analytics-click={current === "pl" ? "language_pl_current" : "language_pl"}
+    data-ga-label="pl"
   >
     PL
   </a>

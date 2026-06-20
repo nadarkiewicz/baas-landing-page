@@ -4,47 +4,40 @@ import Button from "./Button.astro";
 interface Props {
   tier: "Core" | "Pro" | "Prime";
   price: string;
-  description?: string;
   badge?: string;
   featured?: boolean;
-  ctaHref?: string;
-  ctaText?: string;
-  lang?: "en" | "pl";
+  ctaHref: string;
+  ctaText: string;
+  language: "en" | "pl";
 }
 
 const {
   tier,
   price,
-  description,
   badge,
   featured = false,
   ctaHref,
   ctaText,
-  lang = "en",
+  language,
 } = Astro.props;
 
-const classes = ["tier", featured ? "featured" : ""].filter(Boolean).join(" ");
 const tierKey = tier.toLowerCase();
+const classes = ["tier", featured ? "featured" : ""].filter(Boolean).join(" ");
 ---
 
 <article class={classes}>
   {badge && <p class="badge">{badge}</p>}
   <h3>{tier}</h3>
   <p class="price">{price}</p>
-  {description && <p>{description}</p>}
 
-  {
-    ctaHref && ctaText && (
-      <Button
-        href={ctaHref}
-        variant={featured ? "primary" : "secondary"}
-        analyticsClick={`select_tier_${tierKey}_${lang}`}
-        gaEvent="select_tier"
-        gaTier={tierKey}
-        class="tier-button"
-      >
-        {ctaText}
-      </Button>
-    )
-  }
+  <Button
+    href={ctaHref}
+    variant={featured ? "primary" : "secondary"}
+    gaEvent="select_tier"
+    gaTier={tierKey}
+    gaLocation={`pricing_${language}`}
+    class="card-cta"
+  >
+    {ctaText}
+  </Button>
 </article>

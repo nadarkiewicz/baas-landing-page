@@ -1,14 +1,14 @@
 ---
-type Variant = "primary" | "secondary" | "light" | "ghost";
+type Variant = "primary" | "secondary" | "light" | "text";
 
 interface Props {
   href: string;
   variant?: Variant;
-  analyticsClick?: string;
   gaEvent?: string;
   gaLocation?: string;
   gaProduct?: string;
   gaTier?: string;
+  gaLabel?: string;
   target?: string;
   rel?: string;
   class?: string;
@@ -17,11 +17,11 @@ interface Props {
 const {
   href,
   variant = "primary",
-  analyticsClick,
   gaEvent,
   gaLocation,
   gaProduct,
   gaTier,
+  gaLabel,
   target,
   rel,
   class: className = "",
@@ -35,11 +35,11 @@ const classes = ["button", variant, className].filter(Boolean).join(" ");
   href={href}
   target={target}
   rel={rel}
-  data-analytics-click={analyticsClick}
   data-ga-event={gaEvent}
   data-ga-location={gaLocation}
   data-ga-product={gaProduct}
   data-ga-tier={gaTier}
+  data-ga-label={gaLabel}
 >
   <slot />
 </a>

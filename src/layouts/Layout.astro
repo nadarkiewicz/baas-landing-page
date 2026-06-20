@@ -1,10 +1,16 @@
 ---
-import "../styles/global.css";
 import { siteConfig } from "../config/site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: "en" | "pl";
+}
 
 const {
-  title = "BAaaS",
-  description = "Fractional delivery leadership for regulated and fintech teams.",
+  title = `${siteConfig.personalBrand} — ${siteConfig.offerName}`,
+  description = "Fractional delivery and requirements leadership for regulated and fintech teams.",
   lang = "en",
 } = Astro.props;
 
@@ -18,6 +24,9 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
 
     {
@@ -31,7 +40,10 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
             }
             window.gtag = gtag;
             gtag("js", new Date());
-            gtag("config", GA_ID);
+            gtag("config", GA_ID, {
+              page_path: window.location.pathname,
+              language: document.documentElement.lang || "en",
+            });
           </script>
         </>
       )
@@ -43,36 +55,19 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
 
     <script is:inline>
       const trackedSections = new Set();
-      const trackedFaqs = new Set();
 
       const getLanguage = () => {
-        const htmlLang = document.documentElement.lang;
-        if (htmlLang) return htmlLang;
-        if (window.location.pathname.startsWith("/pl")) return "pl";
-        return "en";
+        return document.documentElement.lang || (window.location.pathname.startsWith("/pl") ? "pl" : "en");
       };
 
       const sendAnalyticsEvent = (eventName, params = {}) => {
         if (typeof window.gtag !== "function") return;
+
         window.gtag("event", eventName, {
           language: getLanguage(),
           page_path: window.location.pathname,
           ...params,
         });
-      };
-
-      const sectionEventMap = {
-        hero: "view_hero",
-        problem: "scroll_problem",
-        "two-ways": "scroll_two_ways",
-        products: "view_products",
-        "how-it-works": "scroll_how",
-        pricing: "view_pricing",
-        included: "view_included",
-        proof: "scroll_proof",
-        faq: "view_faq",
-        "lead-magnet": "view_lead_magnet",
-        contact: "view_contact",
       };
 
       if ("IntersectionObserver" in window) {
@@ -90,19 +85,25 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
 
               trackedSections.add(uniqueKey);
 
-              const baseParams = {
+              sendAnalyticsEvent("section_view", {
                 section_id: sectionId,
                 section_name: section.dataset.sectionName || sectionId,
-              };
+              });
 
-              sendAnalyticsEvent("section_view", baseParams);
+              if (sectionId === "hero") {
+                sendAnalyticsEvent("view_hero");
+              }
 
-              if (sectionEventMap[sectionId]) {
-                sendAnalyticsEvent(sectionEventMap[sectionId], baseParams);
+              if (sectionId === "pricing") {
+                sendAnalyticsEvent("view_pricing");
+              }
+
+              if (sectionId === "faq") {
+                sendAnalyticsEvent("view_faq");
               }
             });
           },
-          { threshold: 0.45 }
+          { threshold: 0.5 }
         );
 
         document.querySelectorAll("section[id]").forEach((section) => {
@@ -110,35 +111,36 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
         });
       }
 
-      document.querySelectorAll("[data-analytics-click], [data-ga-event]").forEach((element) => {
+      document.querySelectorAll("[data-ga-event]").forEach((element) => {
         element.addEventListener("click", () => {
-          const eventName = element.dataset.gaEvent || "cta_click";
-          const params = {};
+          const eventName = element.dataset.gaEvent;
+          if (!eventName) return;
 
-          if (element.dataset.analyticsClick) params.cta_name = element.dataset.analyticsClick;
-          if (element.dataset.gaLocation) params.location = element.dataset.gaLocation;
-          if (element.dataset.gaProduct) params.product = element.dataset.gaProduct;
-          if (element.dataset.gaTier) params.tier = element.dataset.gaTier;
+          const payload = {};
 
-          sendAnalyticsEvent(eventName, params);
+          if (element.dataset.gaLocation) payload.location = element.dataset.gaLocation;
+          if (element.dataset.gaTier) payload.tier = element.dataset.gaTier;
+          if (element.dataset.gaProduct) payload.product = element.dataset.gaProduct;
+          if (element.dataset.gaLabel) payload.label = element.dataset.gaLabel;
+
+          sendAnalyticsEvent(eventName, payload);
 
           if (eventName === "select_product" && element.dataset.gaProduct === "readiness_review") {
-            sendAnalyticsEvent("readiness_review_start", params);
+            sendAnalyticsEvent("readiness_review_start", {
+              product: "readiness_review",
+              location: element.dataset.gaLocation || "product_card",
+            });
           }
         });
       });
 
-      document.querySelectorAll("details").forEach((details, index) => {
+      document.querySelectorAll("details").forEach((details) => {
         details.addEventListener("toggle", () => {
           if (!details.open) return;
-
           const summary = details.querySelector("summary");
-          const question = summary ? summary.textContent.trim() : `faq_${index + 1}`;
-          const key = `${window.location.pathname}:${question}`;
-          if (trackedFaqs.has(key)) return;
-
-          trackedFaqs.add(key);
-          sendAnalyticsEvent("faq_open", { q: question });
+          sendAnalyticsEvent("faq_open", {
+            q: summary ? summary.textContent.trim() : "unknown",
+          });
         });
       });
     </script>

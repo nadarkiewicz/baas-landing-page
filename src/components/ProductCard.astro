@@ -4,23 +4,25 @@ import Button from "./Button.astro";
 interface Props {
   title: string;
   price: string;
-  productKey: "readiness_review" | "regulation_requirements" | "requirements_reset" | "decision_paper";
+  description: string;
+  productKey: string;
   ctaHref: string;
   ctaText: string;
-  badge?: string;
   featured?: boolean;
-  lang?: "en" | "pl";
+  badge?: string;
+  language: "en" | "pl";
 }
 
 const {
   title,
   price,
+  description,
   productKey,
   ctaHref,
   ctaText,
-  badge,
   featured = false,
-  lang = "en",
+  badge,
+  language,
 } = Astro.props;
 
 const classes = ["product-card", featured ? "featured" : ""].filter(Boolean).join(" ");
@@ -30,14 +32,15 @@ const classes = ["product-card", featured ? "featured" : ""].filter(Boolean).joi
   {badge && <p class="badge">{badge}</p>}
   <h3>{title}</h3>
   <p class="product-price">{price}</p>
-  <p><slot /></p>
+  <p>{description}</p>
+
   <Button
     href={ctaHref}
     variant={featured ? "primary" : "secondary"}
-    analyticsClick={`select_product_${productKey}_${lang}`}
     gaEvent="select_product"
     gaProduct={productKey}
-    class="product-button"
+    gaLocation={`product_${language}`}
+    class="card-cta"
   >
     {ctaText}
   </Button>

@@ -17,7 +17,7 @@ const copy = {
     placeholder: "your email",
     button: "Send it to me",
     note: "No spam. One useful note a month, unsubscribe anytime.",
-    subject: "BAaaS guide request",
+    subject: "Guide request - The hidden cost of unclear requirements",
     bodyPrefix: "Please send me the guide: The hidden cost of unclear requirements.",
   },
   pl: {
@@ -27,12 +27,13 @@ const copy = {
     placeholder: "Twój e-mail",
     button: "Wyślij mi",
     note: "Bez spamu. Jedna przydatna wiadomość miesięcznie, w każdej chwili możesz się wypisać.",
-    subject: "Prośba o przewodnik BAaaS",
+    subject: "Prośba o przewodnik - Ukryty koszt niejasnych wymagań",
     bodyPrefix: "Proszę o przesłanie przewodnika: Ukryty koszt niejasnych wymagań.",
   },
 }[lang];
 
-const formAction = action || `mailto:${contactEmail}`;
+const fallbackAction = `mailto:${contactEmail}`;
+const formAction = action || fallbackAction;
 ---
 
 <section id="lead-magnet" data-section-name={copy.title} class="section lead-magnet-section">
@@ -54,10 +55,17 @@ const formAction = action || `mailto:${contactEmail}`;
       data-email-body-prefix={copy.bodyPrefix}
     >
       <label class="sr-only" for={`lead-email-${lang}`}>{copy.placeholder}</label>
-      <input id={`lead-email-${lang}`} type="email" name="email" placeholder={copy.placeholder} required />
-      <button type="submit" data-analytics-click={`lead_magnet_submit_${lang}`}>
-        {copy.button}
-      </button>
+
+      <input
+        id={`lead-email-${lang}`}
+        type="email"
+        name="email"
+        placeholder={copy.placeholder}
+        required
+      />
+
+      <button type="submit">{copy.button}</button>
+
       <p class="form-note">{copy.note}</p>
     </form>
   </div>
@@ -84,7 +92,7 @@ const formAction = action || `mailto:${contactEmail}`;
         const emailInput = form.querySelector('input[type="email"]');
         const visitorEmail = emailInput ? emailInput.value : "";
         const contactEmail = form.dataset.contactEmail;
-        const subject = encodeURIComponent(form.dataset.emailSubject || "BAaaS guide request");
+        const subject = encodeURIComponent(form.dataset.emailSubject || "Guide request");
         const bodyPrefix = form.dataset.emailBodyPrefix || "Please send me the guide.";
         const body = encodeURIComponent(`${bodyPrefix}\n\nVisitor email: ${visitorEmail}`);
 

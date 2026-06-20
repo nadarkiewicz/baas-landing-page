@@ -1,12 +1,13 @@
 ---
 interface Props {
   title: string;
+  text: string;
 }
 
-const { title } = Astro.props;
+const { title, text } = Astro.props;
 ---
 
-<article class="proof-card">
+<article>
   <h3>{title}</h3>
-  <p><slot /></p>
+  <p>{text}</p>
 </article>

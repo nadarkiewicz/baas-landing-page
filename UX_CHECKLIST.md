@@ -1,37 +1,25 @@
-# BAaaS v3 landing page UX checklist
+# Landing page UX checklist
 
-This checklist supports the BAaaS v3 landing page in English and Polish.
+Internal codename: BAaaS.
+
+Public brand: Piotr Nadarkiewicz.
+
+Public offer: fractional delivery & requirements lead.
+
+Do not display "Business Analyst as a Service" or "BAaaS" in the public site.
 
 ## Main goal
 
 The site should make a qualified visitor either:
 
 1. Book a 30-minute call.
-2. Start with a Delivery Readiness Review.
+2. Start with a fixed-scope Readiness Review.
 3. Leave an email for the guide.
 
 ## Current site structure
 
 - English page: `/`
 - Polish page: `/pl/`
-
-## Positioning
-
-The page is positioned as:
-
-- EN: Fractional delivery leadership for regulated and fintech teams.
-- PL: Doświadczone wsparcie delivery dla zespołów regulowanych i fintech.
-
-## Product ladder
-
-Fixed-scope products are entry points:
-
-- Delivery Readiness Review / Przegląd Gotowości Delivery
-- Regulation into Requirements / Regulacja w wymagania
-- Requirements Reset / Reset wymagań
-- Decision Paper / Dokument decyzyjny
-
-The Readiness Review is the best first step and should be visually emphasised.
 
 ## Primary CTA
 
@@ -42,35 +30,23 @@ The primary CTA is:
 
 It should appear in:
 
-- Sticky header
 - Hero
+- Sticky header
 - Product section
 - Pricing
 - Final CTA
 
-## Secondary high-intent CTA
+## Secondary CTA
 
-The secondary high-intent CTA is:
+The highest-intent secondary CTA is:
 
 - EN: `Start with a Readiness Review`
 - PL: `Zacznij od Przeglądu Gotowości`
 
-It should appear in:
-
-- Hero
-- Fixed-scope products
-- Final CTA
-
-## Warm CTA
-
-The warm CTA is the guide:
+The lower-friction warm CTA is the guide:
 
 - EN: `The hidden cost of unclear requirements`
 - PL: `Ukryty koszt niejasnych wymagań`
-
-It should appear in:
-
-- Lead magnet section
 
 ## Section order
 
@@ -80,25 +56,24 @@ Use this order unless explicitly changed:
 2. Problem
 3. Two ways to work
 4. Fixed-scope products
-5. Retained monthly model
+5. Retained monthly capacity
 6. Pricing
 7. What the subscription includes
 8. What it does not include
-9. Proof / who is behind it
+9. Who is behind it
 10. FAQ
 11. Lead magnet
 12. Final CTA
-13. Footer
 
 ## Required section IDs
 
-Do not remove or rename these IDs without also updating analytics:
+Do not remove or rename these IDs without updating analytics:
 
 - `hero`
 - `problem`
-- `two-ways`
-- `products`
-- `how-it-works`
+- `ways-to-work`
+- `fixed-scope-products`
+- `retained`
 - `pricing`
 - `included`
 - `not-included`
@@ -122,27 +97,62 @@ This must also work:
 Required events:
 
 - `section_view`
-- `view_products`
+- `view_hero`
 - `view_pricing`
+- `view_faq`
+- `cta_book_click`
 - `select_product`
 - `readiness_review_start`
 - `select_tier`
-- `cta_book_click`
 - `lead_magnet_submit`
 - `faq_open`
 - `outbound_click`
 
-## Design rules
+## Product tracking
 
-- Keep one primary CTA per screen.
-- Keep the booking CTA visually strongest.
-- Keep Readiness Review clearly visible but secondary to the call CTA in the hero.
-- Keep pricing visible on the page.
-- Highlight Pro as most chosen.
-- Highlight Delivery Readiness Review as the best first step.
-- Use generous spacing.
-- Avoid unnecessary animation.
-- Mobile must work without horizontal scrolling.
+Fixed-scope product CTAs must send `select_product`.
+
+Product keys:
+
+- `readiness_review`
+- `regulation_requirements`
+- `requirements_reset`
+- `decision_paper`
+
+Readiness Review CTAs must also send `readiness_review_start`.
+
+## Hero rules
+
+The hero must answer:
+
+- Who is this?
+- What is the offer?
+- Who is it for?
+- Why should I care?
+- What do I do next?
+
+Hero must include:
+
+- Piotr Nadarkiewicz
+- Fractional delivery & requirements lead
+- Regulated / fintech context
+- Primary booking CTA
+- Readiness Review CTA
+- Credibility strip
+
+## Pricing rules
+
+Pricing must remain visible on the page.
+
+Pricing must show:
+
+- Core
+- Pro
+- Prime
+
+Pro should be visually marked as the common / most chosen option.
+
+Do not hide pricing behind a call.
 
 ## Trust rules
 
@@ -150,35 +160,37 @@ The page should include:
 
 - 17+ years experience
 - Banking
-- Fintech
-- Regulated software
+- Fintech / regulated software
 - DORA / KYC-AML
 - DORA proof point
 - Telecom / M&A proof point
 - KYC/AML proof point
 - Customer-value / retail proof point
-- NDA / anonymous-client note
+- NDA / clients anonymous note
 
-## Polish language rules
+## Design rules
 
-The Polish version should use direct but professional Polish.
+- Use generous spacing.
+- Keep one visual accent colour.
+- Do not add unnecessary animation.
+- Do not add competing CTA types.
+- Primary CTA must be visually stronger than secondary CTA.
+- Mobile must work without horizontal scrolling.
+- The page must remain readable on a phone.
 
-Avoid these Polish phrases unless explicitly requested:
+## Language rules
 
-- `pojemność`
-- `ślizga`
-- `senior-analityk`
-- `jednego analityka` in hero
-- `Doświadczona analiza` in hero
+EN and PL pages should stay structurally similar.
+
+Polish should be direct and professional.
 
 Preferred Polish wording:
 
-- `abonament`
-- `na poziomie seniora`
-- `doświadczony`
-- `stały dostęp`
-- `umów 30-minutową rozmowę`
-- `Przegląd Gotowości`
+- `lider delivery i wymagań`
+- `w abonamencie`
+- `projekt o ustalonym zakresie`
+- `Przegląd Gotowości Delivery`
+- `Umów 30-minutową rozmowę`
 
 ## Before publishing
 
@@ -190,8 +202,8 @@ Then check:
 
 - `/`
 - `/pl/`
+- sticky header
 - language switcher
-- sticky CTA
 - hero CTA
 - Readiness Review CTA
 - product cards
@@ -199,7 +211,6 @@ Then check:
 - final CTA
 - lead magnet form
 - mobile layout
-- build output has no errors
 
 ## Publish command
 

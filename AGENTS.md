@@ -1,6 +1,17 @@
-# BAaaS landing page project instructions
+# Project instructions for AI coding agents
 
-This is an Astro static landing page deployed to Cloudflare Workers static assets.
+This is an Astro static landing page for Piotr Nadarkiewicz.
+
+The old public name "Business Analyst as a Service (BAaaS)" has been retired. BAaaS may be used only as an internal codename in notes. Do not show BAaaS in public UI, page titles, meta descriptions, buttons, headings, or visible site copy.
+
+## Public positioning
+
+Lead with:
+
+- Piotr Nadarkiewicz
+- Fractional delivery & requirements lead
+- Regulated and fintech teams
+- Fixed-scope products plus retained monthly support
 
 ## Project structure
 
@@ -11,40 +22,24 @@ This is an Astro static landing page deployed to Cloudflare Workers static asset
 - Site config: `src/config/site.ts`
 - Reusable components: `src/components/`
 
-## Current positioning
-
-The page is now v3: fractional delivery leadership for regulated and fintech teams.
-The commercial structure is:
-
-1. Fixed-scope products as entry points.
-2. Monthly retained senior capacity as the ongoing model.
-
-Keep the split in tone:
-
-- Fixed-scope products: plain commercial language.
-- Retained model: slightly more elevated, senior, strategic language.
-
 ## Rules
 
-- Do not remove Google Analytics safety logic.
-- `gaMeasurementId` may be empty. If it is empty, the page must still build and work.
-- Keep English at `/`.
-- Keep Polish at `/pl/`.
+- Keep the site static. Do not add SSR.
+- Keep Google Analytics optional.
+- `gaMeasurementId: ""` must build and work.
+- Do not remove analytics hooks.
+- Do not rename section IDs without updating tracking and `UX_CHECKLIST.md`.
 - Keep EN and PL pages structurally similar.
-- Do not add server-side rendering.
-- This should remain a static Astro site.
-- Do not add a database unless explicitly asked.
-- Do not redesign the whole site unless explicitly asked.
+- Do not add external UI frameworks unless explicitly requested.
+- Do not replace the current design system with Tailwind or React unless explicitly requested.
 
 ## Required section IDs
 
-Do not remove these IDs without updating analytics:
-
 - `hero`
 - `problem`
-- `two-ways`
-- `products`
-- `how-it-works`
+- `ways-to-work`
+- `fixed-scope-products`
+- `retained`
 - `pricing`
 - `included`
 - `not-included`
@@ -55,17 +50,14 @@ Do not remove these IDs without updating analytics:
 
 ## Required GA events
 
-Keep support for:
-
-- `page_view`
 - `section_view`
 - `view_hero`
-- `view_products`
 - `view_pricing`
+- `view_faq`
+- `cta_book_click`
 - `select_product`
 - `readiness_review_start`
 - `select_tier`
-- `cta_book_click`
 - `lead_magnet_submit`
 - `faq_open`
 - `outbound_click`
@@ -76,12 +68,9 @@ Run:
 
     npm run build
 
-## Deployment
+Then commit:
 
-Changes are published by pushing to GitHub:
-
+    git status
     git add .
     git commit -m "Update landing page"
     git push
-
-Cloudflare deploys automatically after push.
