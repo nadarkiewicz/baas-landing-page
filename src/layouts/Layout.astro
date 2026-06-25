@@ -16,6 +16,21 @@ const {
 
 const GA_ID = siteConfig.gaMeasurementId;
 const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
+const privacyHref = lang === "pl" ? "/pl/privacy/" : "/privacy/";
+
+const consentCopy = lang === "pl"
+  ? {
+      text: "Używam Google Analytics, żeby sprawdzać, które treści i działania na stronie są użyteczne. Analityka działa dopiero po Twojej zgodzie.",
+      accept: "Akceptuję analitykę",
+      reject: "Nie teraz",
+      privacy: "Prywatność",
+    }
+  : {
+      text: "I use Google Analytics to understand which content and actions on the site are useful. Analytics runs only after your consent.",
+      accept: "Accept analytics",
+      reject: "Not now",
+      privacy: "Privacy",
+    };
 ---
 
 <!doctype html>
@@ -28,36 +43,50 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
     <meta property="og:description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
-
-    {
-      hasAnalytics && (
-        <>
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-          <script is:inline define:vars={{ GA_ID }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              window.dataLayer.push(arguments);
-            }
-            window.gtag = gtag;
-            gtag("js", new Date());
-            gtag("config", GA_ID, {
-              page_path: window.location.pathname,
-              language: document.documentElement.lang || "en",
-            });
-          </script>
-        </>
-      )
-    }
   </head>
 
   <body>
     <slot />
 
-    <script is:inline>
+    {
+      hasAnalytics && (
+        <aside class="cookie-banner" data-cookie-banner hidden>
+          <p>{consentCopy.text} <a href={privacyHref}>{consentCopy.privacy}</a></p>
+          <div>
+            <button type="button" data-analytics-accept>{consentCopy.accept}</button>
+            <button type="button" data-analytics-reject>{consentCopy.reject}</button>
+          </div>
+        </aside>
+      )
+    }
+
+    <script is:inline define:vars={{ GA_ID, hasAnalytics }}>
       const trackedSections = new Set();
+      let analyticsLoaded = false;
 
       const getLanguage = () => {
         return document.documentElement.lang || (window.location.pathname.startsWith("/pl") ? "pl" : "en");
+      };
+
+      const loadAnalytics = () => {
+        if (!hasAnalytics || analyticsLoaded || !GA_ID) return;
+        analyticsLoaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", GA_ID, {
+          page_path: window.location.pathname,
+          language: getLanguage(),
+        });
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(script);
       };
 
       const sendAnalyticsEvent = (eventName, params = {}) => {
@@ -69,6 +98,27 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
           ...params,
         });
       };
+
+      const consentValue = hasAnalytics ? window.localStorage.getItem("analytics_consent") : "rejected";
+      const banner = document.querySelector("[data-cookie-banner]");
+
+      if (consentValue === "accepted") {
+        loadAnalytics();
+      } else if (hasAnalytics && consentValue !== "rejected" && banner) {
+        banner.hidden = false;
+      }
+
+      document.querySelector("[data-analytics-accept]")?.addEventListener("click", () => {
+        window.localStorage.setItem("analytics_consent", "accepted");
+        banner?.setAttribute("hidden", "");
+        loadAnalytics();
+        sendAnalyticsEvent("analytics_consent_update", { status: "accepted" });
+      });
+
+      document.querySelector("[data-analytics-reject]")?.addEventListener("click", () => {
+        window.localStorage.setItem("analytics_consent", "rejected");
+        banner?.setAttribute("hidden", "");
+      });
 
       if ("IntersectionObserver" in window) {
         const sectionObserver = new IntersectionObserver(
@@ -90,17 +140,9 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
                 section_name: section.dataset.sectionName || sectionId,
               });
 
-              if (sectionId === "hero") {
-                sendAnalyticsEvent("view_hero");
-              }
-
-              if (sectionId === "pricing") {
-                sendAnalyticsEvent("view_pricing");
-              }
-
-              if (sectionId === "faq") {
-                sendAnalyticsEvent("view_faq");
-              }
+              if (sectionId === "hero") sendAnalyticsEvent("view_hero");
+              if (sectionId === "pricing") sendAnalyticsEvent("view_pricing");
+              if (sectionId === "faq") sendAnalyticsEvent("view_faq");
             });
           },
           { threshold: 0.5 }
@@ -117,7 +159,6 @@ const hasAnalytics = typeof GA_ID === "string" && GA_ID.trim().length > 0;
           if (!eventName) return;
 
           const payload = {};
-
           if (element.dataset.gaLocation) payload.location = element.dataset.gaLocation;
           if (element.dataset.gaTier) payload.tier = element.dataset.gaTier;
           if (element.dataset.gaProduct) payload.product = element.dataset.gaProduct;

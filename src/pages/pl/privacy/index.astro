@@ -1,0 +1,82 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Button from "../../../components/Button.astro";
+import LanguageSwitch from "../../../components/LanguageSwitch.astro";
+import { siteConfig } from "../../../config/site";
+
+const { personalBrand, polishOfferName, contactEmail, bookingLink, linkedInUrl, businessName, businessCountry } = siteConfig;
+---
+
+<Layout title={`Prywatność — ${personalBrand}`} description={`Informacje o prywatności na stronie ${personalBrand}.`} lang="pl">
+  <div class="site-shell">
+    <header class="sticky-header">
+      <a class="brand-lockup" href="/pl/" aria-label={`${personalBrand} strona główna`}>
+        <span class="brand-name">{personalBrand}</span>
+        <span class="brand-offer">{polishOfferName}</span>
+      </a>
+      <div class="header-actions">
+        <LanguageSwitch current="pl" />
+        <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="privacy_header_pl">Umów rozmowę</Button>
+      </div>
+    </header>
+
+    <main class="privacy-page section">
+      <div class="container content-stack">
+        <p class="eyebrow">Prywatność</p>
+        <h1>Informacje o prywatności</h1>
+        <p>Ostatnia aktualizacja: 25 czerwca 2026 r.</p>
+
+        <h2>Kto odpowiada za stronę</h2>
+        <p>
+          Stronę prowadzi {businessName}, {businessCountry}. W sprawach prywatności napisz na
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+        </p>
+
+        <h2>Jakie dane mogą być przetwarzane</h2>
+        <p>Dane mogą być przetwarzane w kilku sytuacjach:</p>
+        <ul class="plain-list">
+          <li>gdy umawiasz rozmowę lub Przegląd Gotowości przez Cal.eu;</li>
+          <li>gdy prosisz o przewodnik przez formularz Tally;</li>
+          <li>gdy piszesz bezpośrednio e-mailem;</li>
+          <li>gdy Google Analytics mierzy sposób korzystania ze strony.</li>
+        </ul>
+
+        <h2>Po co dane są używane</h2>
+        <p>Dane służą do odpowiedzi na zapytania, umawiania rozmów, wysyłania zamówionych materiałów, ulepszania strony oraz sprawdzania, które treści i wezwania do działania generują sensowne zapytania.</p>
+
+        <h2>Formularze, umawianie rozmów i narzędzia zewnętrzne</h2>
+        <p>
+          Prośby o przewodnik obsługuje Tally. Umawianie rozmów obsługuje Cal.eu. Te usługi mogą przetwarzać dane zgodnie ze swoimi regulaminami i dokumentami prywatności.
+        </p>
+
+        <h2>Google Analytics</h2>
+        <p>
+          Strona używa Google Analytics 4, żeby zrozumieć ruch i interakcje. Google Analytics może zbierać informacje takie jak odsłony stron, dane o urządzeniu i przeglądarce,
+          przybliżona lokalizacja oraz zdarzenia, na przykład kliknięcia w CTA. Dane analityczne służą do ulepszania strony i oceny, które działania prowadzą do wartościowych zapytań.
+        </p>
+
+        <h2>Twoje prawa</h2>
+        <p>
+          Możesz napisać z pytaniem o swoje dane, poprosić o ich korektę albo usunięcie, sprzeciwić się przetwarzaniu lub wycofać zgodę tam, gdzie przetwarzanie odbywało się na podstawie zgody.
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          Kontakt w sprawach prywatności: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div><strong>{personalBrand}</strong><br />Doświadczony lider delivery i wymagań · Polska · B2B</div>
+        <nav aria-label="Linki w stopce">
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="/pl/">Strona główna</a>
+        </nav>
+        <span>© {new Date().getFullYear()} {personalBrand}</span>
+      </div>
+    </footer>
+  </div>
+</Layout>

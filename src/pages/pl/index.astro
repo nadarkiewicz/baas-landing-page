@@ -9,9 +9,16 @@ import ProofCard from "../../components/ProofCard.astro";
 import Layout from "../../layouts/Layout.astro";
 import { siteConfig } from "../../config/site";
 
-const { personalBrand, contactEmail, bookingLink, readinessReviewLink, leadMagnetAction } = siteConfig;
-
-const polishOfferName = "lider delivery i wymagań";
+const {
+  personalBrand,
+  polishOfferName,
+  contactEmail,
+  bookingLink,
+  readinessReviewLink,
+  guideLinkPl,
+  linkedInUrl,
+  portraitPath,
+} = siteConfig;
 
 const products = [
   {
@@ -73,6 +80,24 @@ const proofPoints = [
   },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "Piotr dołączył do projektu w napiętym momencie. Dzięki przemyślanemu procesowi szybko wskazał krytyczne problemy i przywrócił skuteczną współpracę.",
+    author: "Jason P.",
+  },
+  {
+    quote:
+      "W projekcie z trudną relacją z klientem i niskim morale Piotr usunął główne tarcia w dwa tygodnie. Widzi problemy systemowe, które innym umykają — i potrafi je naprawić.",
+    author: "Jake Z.",
+  },
+  {
+    quote:
+      "Po wdrożeniu rozwiązań Piotra projekt stał się łatwiejszy w zarządzaniu, a komunikacja z interesariuszami wyraźnie się poprawiła. Wnosi jasność, profesjonalizm i głęboki wgląd.",
+    author: "Cameron K.",
+  },
+];
+
 const faqs = [
   {
     question: "Czy muszę zobowiązywać się do abonamentu?",
@@ -86,8 +111,7 @@ const faqs = [
   },
   {
     question: "Co, jeśli w danym miesiącu nie wykorzystamy czasu?",
-    answer:
-      "Nie przechodzi dalej. Rezerwujesz sobie czas seniora — dostępny wtedy, gdy go potrzebujesz.",
+    answer: "Nie przechodzi dalej. Rezerwujesz sobie czas seniora — dostępny wtedy, gdy go potrzebujesz.",
   },
   {
     question: "Czy możesz pracować w naszych godzinach?",
@@ -129,21 +153,15 @@ const faqs = [
             <p class="eyebrow">{personalBrand}</p>
             <h1>Doświadczony lider delivery i wymagań dla zespołów regulowanych i fintech.</h1>
             <p class="hero-lead">
-              Wymagania, decyzje i dokumentacja na poziomie seniora — w abonamencie
-              lub jako projekty o ustalonym zakresie. Ponad 17 lat w bankowości,
-              finansach regulowanych i złożonym IT, bez zatrudniania na etat.
+              Wymagania, decyzje i dokumentacja na poziomie seniora — w abonamencie lub jako projekty o ustalonym zakresie.
+              Ponad 17 lat w bankowości, finansach regulowanych i złożonym IT, bez zatrudniania na etat.
             </p>
 
             <div class="actions">
               <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="hero_pl">
-                Umów 30-minutową rozmowę
+                Umów 25-minutową rozmowę
               </Button>
-              <Button
-                href={readinessReviewLink}
-                variant="secondary"
-                gaEvent="readiness_review_start"
-                gaLocation="hero_pl"
-              >
+              <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="hero_pl">
                 Zacznij od Przeglądu Gotowości →
               </Button>
             </div>
@@ -169,32 +187,29 @@ const faqs = [
         </div>
       </section>
 
+      <section class="proof-strip-section" aria-label="Krótka rekomendacja">
+        <div class="container proof-strip">
+          <p>„Widzi problemy systemowe, które innym umykają — i potrafi je naprawić.”</p>
+          <span>Rekomendacje klientów · recovery delivery · jasność dla interesariuszy</span>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" data-ga-event="outbound_click" data-ga-label="linkedin_top_pl">Profil LinkedIn →</a>
+        </div>
+      </section>
+
       <section id="problem" data-section-name="Problem" class="section">
         <div class="container two-column">
           <div>
             <p class="eyebrow">Problem</p>
             <h2>Luka zwykle pojawia się wcześniej, zanim zespół zacznie budować.</h2>
           </div>
-
           <div class="content-stack">
             <p>
-              Gdy delivery się opóźnia, decyzje stoją, a dokumentacja nie
-              przeszłaby audytu, przyczyna zwykle leży wcześniej — nikt
-              doświadczony nie odpowiada za wymagania i decyzje.
+              Gdy delivery się opóźnia, decyzje stoją, a dokumentacja nie przeszłaby audytu, przyczyna zwykle leży wcześniej — nikt doświadczony nie odpowiada za wymagania i decyzje.
             </p>
-
             <p>
-              <strong>Jeśli prowadzisz delivery, produkt lub transformację:</strong>
-              dobrzy ludzie ogarniają wymagania i interesariuszy „przy okazji",
-              ale nikt doświadczony nie panuje nad całością. Decyzje czekają.
-              Rosną przeróbki. Gotowość na audyt się obniża.
+              <strong>Jeśli prowadzisz delivery, produkt lub transformację:</strong> dobrzy ludzie ogarniają wymagania i interesariuszy „przy okazji”, ale nikt doświadczony nie panuje nad całością. Decyzje czekają. Rosną przeróbki. Gotowość na audyt się obniża.
             </p>
-
             <p>
-              <strong>Jeśli masz cele kompetencyjne lub presję regulacyjną:</strong>
-              potrzebujesz rygoru seniora, który zostaje w zespole — nie ogólnego
-              szkolenia i nie wolnego, drogiego etatu, którego potrzebujesz tylko
-              w połowie.
+              <strong>Jeśli masz cele kompetencyjne lub presję regulacyjną:</strong> potrzebujesz rygoru seniora, który zostaje w zespole — nie ogólnego szkolenia i nie wolnego, drogiego etatu, którego potrzebujesz tylko w połowie.
             </p>
           </div>
         </div>
@@ -204,35 +219,19 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Dwa sposoby współpracy</p>
           <h2>Zacznij od projektu albo zarezerwuj czas seniora co miesiąc.</h2>
-
-          <div class="steps">
+          <div class="path-cards">
             <article>
-              <span>1</span>
+              <span>01</span>
               <h3>Zacznij od projektu o ustalonym zakresie.</h3>
-              <p>
-                Nazwany zakres pracy, stała cena, jasny rezultat. Najprostszy sposób,
-                by szybko zobaczyć wartość i sprawdzić, jak pracuję.
-              </p>
+              <p>Nazwany zakres pracy, stała cena, jasny rezultat. Najprostszy sposób, by szybko zobaczyć wartość i sprawdzić, jak pracuję.</p>
             </article>
-
             <article>
-              <span>2</span>
+              <span>02</span>
               <h3>Zarezerwuj czas seniora co miesiąc.</h3>
-              <p>
-                Stały dostęp do wymagań, decyzji i dokumentacji w Twojej pracy —
-                około trzech dni seniora w miesiącu, użytych tam, gdzie jest luka.
-              </p>
-            </article>
-
-            <article>
-              <span>3</span>
-              <h3>Przejdź na abonament, gdy to się zwraca.</h3>
-              <p>
-                Większość klientów zaczyna od projektu i przechodzi na abonament,
-                gdy to się zwraca.
-              </p>
+              <p>Stały dostęp do wymagań, decyzji i dokumentacji w Twojej pracy — około trzech dni seniora w miesiącu, użytych tam, gdzie jest luka.</p>
             </article>
           </div>
+          <p class="wide-note">Większość klientów zaczyna od projektu i przechodzi na abonament, gdy to się zwraca.</p>
         </div>
       </section>
 
@@ -240,136 +239,126 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Produkty o ustalonym zakresie</p>
           <h2>Ustalony zakres, stała cena, praca seniora.</h2>
-          <p class="wide-note">
-            Kup pojedynczy produkt — albo wykorzystaj go w ramach abonamentu.
-          </p>
-
+          <p class="wide-note">Kup pojedynczy produkt — albo wykorzystaj go w ramach abonamentu.</p>
           <div class="product-grid">
-            {products.map((product) => (
-              <ProductCard {...product} language="pl" />
-            ))}
+            {products.map((product) => <ProductCard {...product} language="pl" />)}
           </div>
-
           <div class="actions">
             <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="products_pl">
-              Nie wiesz, co wybrać? Umów 30-minutową rozmowę
+              Nie wiesz, co wybrać? Umów 25-minutową rozmowę
             </Button>
           </div>
         </div>
       </section>
 
-      <section id="retained" data-section-name="Abonament" class="section muted">
-        <div class="container">
-          <p class="eyebrow">Albo zarezerwuj czas seniora co miesiąc</p>
-          <h2>Przy stałej potrzebie abonament rezerwuje dla Ciebie czas seniora.</h2>
-
-          <div class="steps">
-            <article>
-              <span>1</span>
-              <h3>Wybierz pakiet.</h3>
-              <p>Core, Pro albo Prime — ta sama usługa w trzech poziomach priorytetu i zakresu.</p>
-            </article>
-
-            <article>
-              <span>2</span>
-              <h3>Ustal miks na miesiąc.</h3>
-              <p>W ramach ~3 dni seniora: dokument, warsztat, doradztwo na bieżąco, wsparcie decyzji.</p>
-            </article>
-
-            <article>
-              <span>3</span>
-              <h3>Wszystko zostaje u Ciebie.</h3>
-              <p>Dokumenty, szablony i metody zostają w firmie.</p>
-            </article>
+      <section id="retained" data-section-name="Abonament" class="section muted retained-section">
+        <div class="container two-column">
+          <div>
+            <p class="eyebrow">Albo zarezerwuj czas seniora co miesiąc</p>
+            <h2>Przy stałej potrzebie abonament rezerwuje dla Ciebie czas seniora.</h2>
           </div>
-
-          <p class="wide-note">
-            Płacisz za stały dostęp i priorytet, nie za godziny. Dostępność jest
-            świadomie ograniczona, dzięki czemu jakość pozostaje wysoka.
-            Niewykorzystany czas nie przechodzi dalej — rezerwujemy go dla Ciebie.
-          </p>
+          <div class="list-card emphasis-card">
+            <ol class="number-list">
+              <li><strong>Wybierz pakiet.</strong> Core, Pro albo Prime — ta sama usługa w trzech poziomach priorytetu i zakresu.</li>
+              <li><strong>Ustal miks na miesiąc.</strong> W ramach ~3 dni seniora: dokument, warsztat, doradztwo na bieżąco, wsparcie decyzji.</li>
+              <li><strong>Wszystko zostaje u Ciebie.</strong> Dokumenty, szablony i metody zostają w firmie.</li>
+            </ol>
+            <p class="wide-note compact">
+              Płacisz za stały dostęp i priorytet, nie za godziny. Dostępność jest świadomie ograniczona, dzięki czemu jakość pozostaje wysoka.
+            </p>
+          </div>
         </div>
       </section>
 
       <section id="pricing" data-section-name="Cennik" class="section dark">
         <div class="container">
           <p class="eyebrow">Cennik</p>
-          <h2>Abonament miesięczny, wyceniony za dostęp i priorytet.</h2>
-
+          <h2>Abonament wyceniony za dostęp i priorytet, nie za „stawki godzinowe”.</h2>
           <div class="pricing-grid">
-            <PricingCard tier="Core" price="od 14 400 zł / miesiąc + VAT" ctaHref={bookingLink} ctaText="Omów Core" language="pl" />
-            <PricingCard tier="Pro" price="od 17 500 zł / miesiąc + VAT" badge="Najczęściej wybierany" featured ctaHref={bookingLink} ctaText="Omów Pro" language="pl" />
-            <PricingCard tier="Prime" price="od 22 000 zł / miesiąc + VAT, lub wycena" ctaHref={bookingLink} ctaText="Omów Prime" language="pl" />
+            <PricingCard tier="Core" price="od 14 400 zł / miesiąc + VAT" ctaHref={bookingLink} ctaText="Porozmawiajmy o Core" language="pl" />
+            <PricingCard tier="Pro" price="od 17 500 zł / miesiąc + VAT" badge="Najczęściej wybierany" featured ctaHref={bookingLink} ctaText="Porozmawiajmy o Pro" language="pl" />
+            <PricingCard tier="Prime" price="od 22 000 zł / miesiąc + VAT, lub wycena" ctaHref={bookingLink} ctaText="Porozmawiajmy o Prime" language="pl" />
           </div>
-
-          <p class="pricing-note">
-            Umowa miesięczna lub roczna z rabatem za zobowiązanie.
-            <em> Umowa miesięczna — bez długiego zobowiązania. Zacznij od jednego miesiąca i sprawdź.</em>
-          </p>
-
+          <p class="pricing-note">Umowa miesięczna lub roczna z rabatem za zobowiązanie. <em>Umowa miesięczna — bez długiego zobowiązania. Zacznij od jednego miesiąca i sprawdź.</em></p>
           <div class="actions">
-            <Button href={bookingLink} variant="light" gaEvent="cta_book_click" gaLocation="pricing_pl">
-              Umów 30-minutową rozmowę
-            </Button>
+            <Button href={bookingLink} variant="light" gaEvent="cta_book_click" gaLocation="pricing_pl">Umów 25-minutową rozmowę</Button>
           </div>
         </div>
       </section>
 
       <section id="included" data-section-name="Co obejmuje abonament" class="section">
-        <div class="container two-column">
+        <div class="container split-lists">
           <div>
             <p class="eyebrow">Co obejmuje abonament</p>
-            <h2>Jasny zakres, mniej nieporozumień.</h2>
+            <h2>Jasny zakres, mniej domysłów po obu stronach.</h2>
+            <div class="list-card">
+              <ul class="check-list">
+                <li>Jeden dokument analityczny lub menedżerski w miesiącu, w uzgodnionym dniu.</li>
+                <li>Dostępność na bieżąco w godzinach pracy — mniej więcej dwa dni w tygodniu.</li>
+                <li>Sesje ad hoc i dłuższe, zgodnie z czasami reakcji Twojego pakietu.</li>
+                <li>Warsztaty, facylitacja, wsparcie decyzji, szablony i follow-up.</li>
+              </ul>
+            </div>
           </div>
-
-          <div class="list-card">
-            <ul class="check-list">
-              <li>Jeden dokument analityczny lub menedżerski w miesiącu, w uzgodnionym dniu.</li>
-              <li>Dostępność na bieżąco w godzinach pracy — mniej więcej dwa dni w tygodniu.</li>
-              <li>Sesje ad hoc i dłuższe, zgodnie z czasami reakcji Twojego pakietu.</li>
-              <li>Warsztaty, facylitacja, wsparcie decyzji, szablony i follow-up.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="not-included" data-section-name="Czego nie obejmuje" class="section muted">
-        <div class="container two-column">
           <div>
             <p class="eyebrow">Czego nie obejmuje</p>
-            <h2>Granice są częścią dobrej współpracy.</h2>
-          </div>
-
-          <div class="list-card">
-            <ul class="plain-list">
-              <li>Nieograniczonego wsparcia ani gwarancji natychmiastowej realizacji.</li>
-              <li>Przenoszenia niewykorzystanego czasu.</li>
-              <li>Dużych, wielotygodniowych programów, które są wyceniane osobno.</li>
-              <li>Podróży i pracy na miejscu. W Prime możliwa kwartalna wizyta; koszty dojazdu są po Twojej stronie.</li>
-            </ul>
+            <h2>Dobre granice pomagają dobrze współpracować.</h2>
+            <div class="list-card quiet-card">
+              <ul class="plain-list">
+                <li>Nieograniczonego wsparcia ani gwarancji natychmiastowej realizacji.</li>
+                <li>Przenoszenia niewykorzystanego czasu.</li>
+                <li>Dużych, wielotygodniowych programów — wyceniane osobno.</li>
+                <li>Podróży i pracy na miejscu. W Prime możliwa kwartalna wizyta; koszty dojazdu po Twojej stronie.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="proof" data-section-name="Kto za tym stoi" class="section">
-        <div class="container two-column">
+      <section id="proof" data-section-name="Kto za tym stoi" class="section muted">
+        <div class="container profile-grid">
+          <div class="portrait-card">
+            <img src={portraitPath} alt="Piotr Nadarkiewicz" width="900" height="900" loading="lazy" />
+          </div>
           <div>
             <p class="eyebrow">Kto za tym stoi</p>
             <h2>{personalBrand}</h2>
-            <p>
-              Praktyk na poziomie senior / principal. MBA. Ponad 17 lat, w tym
-              ponad 4 w bankowości i finansach regulowanych.
-            </p>
-            <p>
-              Czuję się swobodnie tam, gdzie liczy się jakość dokumentacji,
-              ścieżka audytowa i identyfikowalność decyzji. Klienci pozostają
-              domyślnie anonimowi.
-            </p>
+            <p>Praktyk na poziomie senior / principal. MBA. Ponad 17 lat, w tym ponad 4 w bankowości i finansach regulowanych.</p>
+            <p>Czuję się swobodnie tam, gdzie liczy się jakość dokumentacji, ścieżka audytowa i identyfikowalność decyzji. Klienci pozostają domyślnie anonimowi.</p>
+            <div class="actions compact-actions">
+              <Button href={linkedInUrl} variant="secondary" target="_blank" rel="noopener noreferrer" gaEvent="outbound_click" gaLabel="linkedin_proof_pl">Zobacz LinkedIn</Button>
+              <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLabel="email_proof_pl">Napisz: {contactEmail}</Button>
+            </div>
           </div>
+        </div>
 
+        <div class="container work-grid">
+          <div class="work-card">
+            <p class="eyebrow">Jak pracuję</p>
+            <ul class="check-list">
+              <li>Mówię wprost, także wtedy, gdy wygodniej byłoby przemilczeć problem.</li>
+              <li>Doprowadzam wymagania i decyzje do poziomu, który wytrzymuje presję delivery i audytu.</li>
+              <li>Wolę jasny zakres, jasną odpowiedzialność i widoczne kompromisy.</li>
+              <li>Pracuję z niewielką liczbą klientów, żeby realnie utrzymać uwagę seniora.</li>
+              <li>Wolę powiedzieć „to nie jest dobry fit” niż obiecać za dużo.</li>
+            </ul>
+          </div>
           <div class="proof-list">
-            {proofPoints.map((proof) => (
-              <ProofCard title={proof.title} text={proof.text} />
+            {proofPoints.map((proof) => <ProofCard title={proof.title} text={proof.text} />)}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" data-section-name="Rekomendacje" class="section testimonials-section">
+        <div class="container">
+          <p class="eyebrow">Rekomendacje</p>
+          <h2>Co zwykle zmienia się, gdy praca trafia w sedno.</h2>
+          <div class="testimonial-grid">
+            {testimonials.map((item) => (
+              <figure class="testimonial-card">
+                <blockquote>„{item.quote}”</blockquote>
+                <figcaption>— {item.author}</figcaption>
+              </figure>
             ))}
           </div>
         </div>
@@ -379,33 +368,23 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Pytania</p>
           <h2>Najczęstsze pytania przed rozmową.</h2>
-
           <div class="faq-list">
-            {faqs.map((item) => (
-              <FaqItem question={item.question} answer={item.answer} />
-            ))}
+            {faqs.map((item) => <FaqItem question={item.question} answer={item.answer} />)}
           </div>
         </div>
       </section>
 
-      <LeadMagnet lang="pl" contactEmail={contactEmail} action={leadMagnetAction} />
+      <LeadMagnet lang="pl" guideLink={guideLinkPl} bookingLink={bookingLink} />
 
       <section id="contact" data-section-name="Gotowy?" class="section final-cta">
         <div class="container">
           <p class="eyebrow">Gotowy?</p>
-          <h2>30-minutowa rozmowa albo Przegląd Gotowości o ustalonym zakresie.</h2>
-          <p>Wybierz, co bardziej pasuje. Tak czy inaczej dostaniesz szczerą ocenę tego, gdzie jest luka.</p>
-
+          <h2>25-minutowa rozmowa albo Przegląd Gotowości o ustalonym zakresie — wybierz, co bardziej pasuje.</h2>
+          <p>Tak czy inaczej dostaniesz szczerą ocenę tego, gdzie jest luka.</p>
           <div class="actions">
-            <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="footer_pl">
-              Umów 30-minutową rozmowę
-            </Button>
-            <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="footer_pl">
-              Zacznij od Przeglądu Gotowości
-            </Button>
-            <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLocation="footer_email_pl">
-              Napisz: {contactEmail}
-            </Button>
+            <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="footer_pl">Umów 25-minutową rozmowę</Button>
+            <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="footer_pl">Zacznij od Przeglądu Gotowości</Button>
+            <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLabel="footer_email_pl">Napisz: {contactEmail}</Button>
           </div>
         </div>
       </section>
@@ -413,9 +392,22 @@ const faqs = [
 
     <footer class="footer">
       <div class="container footer-content">
-        <span>© {new Date().getFullYear()} {personalBrand}</span>
-        <span>NDA w standardzie. Klienci anonimowi domyślnie.</span>
+        <div>
+          <strong>{personalBrand}</strong><br />
+          Doświadczony lider delivery i wymagań · Polska · B2B
+        </div>
+        <nav aria-label="Linki w stopce">
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="/pl/privacy/">Prywatność</a>
+        </nav>
+        <span>© {new Date().getFullYear()} {personalBrand}. NDA-friendly. Klienci anonimowi domyślnie.</span>
       </div>
     </footer>
+
+    <nav class="mobile-sticky-cta" aria-label="Główne działania">
+      <a href={bookingLink} data-ga-event="cta_book_click" data-ga-location="mobile_sticky_pl">Umów rozmowę</a>
+      <a href={readinessReviewLink} data-ga-event="readiness_review_start" data-ga-location="mobile_sticky_pl">Przegląd Gotowości</a>
+    </nav>
   </div>
 </Layout>

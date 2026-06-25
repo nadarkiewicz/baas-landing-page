@@ -9,7 +9,16 @@ import ProofCard from "../components/ProofCard.astro";
 import Layout from "../layouts/Layout.astro";
 import { siteConfig } from "../config/site";
 
-const { personalBrand, offerName, contactEmail, bookingLink, readinessReviewLink, leadMagnetAction } = siteConfig;
+const {
+  personalBrand,
+  offerName,
+  contactEmail,
+  bookingLink,
+  readinessReviewLink,
+  guideLinkEn,
+  linkedInUrl,
+  portraitPath,
+} = siteConfig;
 
 const products = [
   {
@@ -71,6 +80,24 @@ const proofPoints = [
   },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "Piotr joined our project when the situation was tense on both sides. Thanks to his thoughtful process, he identified the critical issues and restored effective collaboration.",
+    author: "Jason P.",
+  },
+  {
+    quote:
+      "In a project with broken client relationships and low morale, Piotr stepped in and eliminated the friction in two weeks. He spots systemic issues others miss — and fixes them.",
+    author: "Jake Z.",
+  },
+  {
+    quote:
+      "After applying Piotr’s solutions, our project became easier to manage and stakeholder communication improved significantly. He brings clarity, professionalism and deep insight.",
+    author: "Cameron K.",
+  },
+];
+
 const faqs = [
   {
     question: "Do I have to commit to a subscription?",
@@ -84,8 +111,7 @@ const faqs = [
   },
   {
     question: "What if we do not use the time one month?",
-    answer:
-      "It does not roll over. You are holding senior capacity ready for when you need it.",
+    answer: "It does not roll over. You are holding senior capacity ready for when you need it.",
   },
   {
     question: "Can you work in our hours?",
@@ -127,21 +153,15 @@ const faqs = [
             <p class="eyebrow">{personalBrand}</p>
             <h1>Fractional delivery &amp; requirements lead for regulated and fintech teams.</h1>
             <p class="hero-lead">
-              Senior requirements, decisions and documentation — retained monthly,
-              or as fixed-scope projects. 17+ years in banking, regulated finance
-              and complex software, without a full-time hire.
+              Senior requirements, decisions and documentation — retained monthly, or as fixed-scope projects.
+              17+ years in banking, regulated finance and complex software, without a full-time hire.
             </p>
 
             <div class="actions">
               <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="hero">
-                Book a 30-minute call
+                Book a 25-minute call
               </Button>
-              <Button
-                href={readinessReviewLink}
-                variant="secondary"
-                gaEvent="readiness_review_start"
-                gaLocation="hero"
-              >
+              <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="hero">
                 Start with a Readiness Review →
               </Button>
             </div>
@@ -167,6 +187,14 @@ const faqs = [
         </div>
       </section>
 
+      <section class="proof-strip-section" aria-label="Client feedback preview">
+        <div class="container proof-strip">
+          <p>“He spots systemic issues others miss — and fixes them.”</p>
+          <span>Client feedback · delivery recovery · stakeholder clarity</span>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" data-ga-event="outbound_click" data-ga-label="linkedin_top">LinkedIn profile →</a>
+        </div>
+      </section>
+
       <section id="problem" data-section-name="Problem" class="section">
         <div class="container two-column">
           <div>
@@ -176,21 +204,16 @@ const faqs = [
 
           <div class="content-stack">
             <p>
-              When delivery slips, decisions stall, or your documentation would not
-              survive an audit, the cause is usually upstream of the build — no one
-              senior owns the requirements and the decisions.
+              When delivery slips, decisions stall, or your documentation would not survive an audit, the cause is
+              usually upstream of the build — no one senior owns the requirements and the decisions.
             </p>
-
             <p>
-              <strong>If you run delivery, product or a transformation:</strong>
-              capable people handle requirements and stakeholders in the gaps, but no
-              senior owns the thread. Decisions wait. Rework piles up. Audit-readiness slips.
+              <strong>If you run delivery, product or a transformation:</strong> capable people handle requirements and
+              stakeholders in the gaps, but no senior owns the thread. Decisions wait. Rework piles up. Audit-readiness slips.
             </p>
-
             <p>
-              <strong>If you carry capability or regulatory pressure:</strong>
-              you need senior rigour your team keeps — not a generic training day,
-              and not a slow, expensive full-time hire you only half-need.
+              <strong>If you carry capability or regulatory pressure:</strong> you need senior rigour your team keeps — not
+              a generic training day, and not a slow, expensive full-time hire you only half-need.
             </p>
           </div>
         </div>
@@ -200,35 +223,19 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Two ways to work</p>
           <h2>Start with a project, or retain senior capacity monthly.</h2>
-
-          <div class="steps">
+          <div class="path-cards">
             <article>
-              <span>1</span>
+              <span>01</span>
               <h3>Start with a fixed-scope project.</h3>
-              <p>
-                A named piece of work, fixed price, clear deliverable. The simplest
-                way to get value fast and see how we work.
-              </p>
+              <p>A named piece of work, fixed price, clear deliverable. The simplest way to get value fast and see how we work.</p>
             </article>
-
             <article>
-              <span>2</span>
+              <span>02</span>
               <h3>Retain senior capacity monthly.</h3>
-              <p>
-                Ongoing access for requirements, decisions and documentation across
-                your work — about three senior days a month, used where the gap is.
-              </p>
-            </article>
-
-            <article>
-              <span>3</span>
-              <h3>Move when it pays off.</h3>
-              <p>
-                Most clients start with a project and move to retained once it is
-                paying off.
-              </p>
+              <p>Ongoing access for requirements, decisions and documentation across your work — about three senior days a month, used where the gap is.</p>
             </article>
           </div>
+          <p class="wide-note">Most clients start with a project and move to retained once it is paying off.</p>
         </div>
       </section>
 
@@ -236,54 +243,36 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Fixed-scope products</p>
           <h2>Fixed scope, fixed price, senior delivery.</h2>
-          <p class="wide-note">
-            Buy one on its own — or use it inside a retained month.
-          </p>
+          <p class="wide-note">Buy one on its own — or use it inside a retained month.</p>
 
           <div class="product-grid">
-            {products.map((product) => (
-              <ProductCard {...product} language="en" />
-            ))}
+            {products.map((product) => <ProductCard {...product} language="en" />)}
           </div>
 
           <div class="actions">
             <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="products">
-              See which fits → Book a 30-minute call
+              See which fits → Book a 25-minute call
             </Button>
           </div>
         </div>
       </section>
 
-      <section id="retained" data-section-name="Retained monthly capacity" class="section muted">
-        <div class="container">
-          <p class="eyebrow">Or retain senior capacity monthly</p>
-          <h2>For ongoing need, hold senior capacity each month.</h2>
-
-          <div class="steps">
-            <article>
-              <span>1</span>
-              <h3>Pick a tier.</h3>
-              <p>Core, Pro or Prime — same service, three levels of priority and scope.</p>
-            </article>
-
-            <article>
-              <span>2</span>
-              <h3>Agree the month’s mix.</h3>
-              <p>Within ~3 senior days: a document, a workshop, on-call advisory, decision support.</p>
-            </article>
-
-            <article>
-              <span>3</span>
-              <h3>Keep everything.</h3>
-              <p>Documents, templates and methods stay inside your company.</p>
-            </article>
+      <section id="retained" data-section-name="Retained monthly capacity" class="section muted retained-section">
+        <div class="container two-column">
+          <div>
+            <p class="eyebrow">Or retain senior capacity monthly</p>
+            <h2>For ongoing need, hold senior capacity each month.</h2>
           </div>
-
-          <p class="wide-note">
-            You are paying for retained access and priority, not hours. Capacity is
-            deliberately limited, so quality stays high. Unused time does not roll
-            over; we hold the capacity for you.
-          </p>
+          <div class="list-card emphasis-card">
+            <ol class="number-list">
+              <li><strong>Pick a tier.</strong> Core, Pro or Prime — same service, three levels of priority and scope.</li>
+              <li><strong>Agree the month’s mix.</strong> Within ~3 senior days: a document, a workshop, on-call advisory, decision support.</li>
+              <li><strong>Keep everything.</strong> Documents, templates and methods stay inside your company.</li>
+            </ol>
+            <p class="wide-note compact">
+              You are paying for retained access and priority, not hours. Capacity is deliberately limited, so quality stays high.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -291,80 +280,91 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Pricing</p>
           <h2>Retained monthly support, priced for access and priority.</h2>
-
           <div class="pricing-grid">
             <PricingCard tier="Core" price="from £5,850 / month + VAT" ctaHref={bookingLink} ctaText="Discuss Core" language="en" />
             <PricingCard tier="Pro" price="from £7,200 / month + VAT" badge="Most chosen" featured ctaHref={bookingLink} ctaText="Discuss Pro" language="en" />
             <PricingCard tier="Prime" price="from £9,500 / month + VAT, or scoped" ctaHref={bookingLink} ctaText="Discuss Prime" language="en" />
           </div>
-
-          <p class="pricing-note">
-            Monthly rolling, or annual with a commitment discount.
-            <em> Monthly rolling — no long lock-in. Start with a month and see.</em>
-          </p>
-
+          <p class="pricing-note">Monthly rolling, or annual with a commitment discount. <em>Monthly rolling — no long lock-in. Start with a month and see.</em></p>
           <div class="actions">
-            <Button href={bookingLink} variant="light" gaEvent="cta_book_click" gaLocation="pricing">
-              Book a 30-minute call
-            </Button>
+            <Button href={bookingLink} variant="light" gaEvent="cta_book_click" gaLocation="pricing">Book a 25-minute call</Button>
           </div>
         </div>
       </section>
 
       <section id="included" data-section-name="Subscription includes" class="section">
-        <div class="container two-column">
+        <div class="container split-lists">
           <div>
             <p class="eyebrow">What the subscription includes</p>
             <h2>Transparent scope, fewer surprise expectations.</h2>
+            <div class="list-card">
+              <ul class="check-list">
+                <li>One analytical or management document each month, on an agreed day.</li>
+                <li>On-call availability during business hours — roughly two days a week.</li>
+                <li>Ad hoc and longer sessions within the response times for your tier.</li>
+                <li>Workshops, facilitation, decision support, templates and follow-up.</li>
+              </ul>
+            </div>
           </div>
-
-          <div class="list-card">
-            <ul class="check-list">
-              <li>One analytical or management document each month, on an agreed day.</li>
-              <li>On-call availability during business hours — roughly two days a week.</li>
-              <li>Ad hoc and longer sessions within the response times for your tier.</li>
-              <li>Workshops, facilitation, decision support, templates and follow-up.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="not-included" data-section-name="Subscription exclusions" class="section muted">
-        <div class="container two-column">
           <div>
             <p class="eyebrow">What it does not include</p>
             <h2>Clear boundaries make the relationship work.</h2>
-          </div>
-
-          <div class="list-card">
-            <ul class="plain-list">
-              <li>Unlimited support or a guaranteed instant turnaround.</li>
-              <li>Rollover of unused time.</li>
-              <li>Large multi-week programmes, which are priced separately.</li>
-              <li>Travel and on-site work. Prime may include a quarterly on-site visit; you cover travel.</li>
-            </ul>
+            <div class="list-card quiet-card">
+              <ul class="plain-list">
+                <li>Unlimited support or a guaranteed instant turnaround.</li>
+                <li>Rollover of unused time.</li>
+                <li>Large multi-week programmes, which are priced separately.</li>
+                <li>Travel and on-site work. Prime may include a quarterly on-site visit; you cover travel.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="proof" data-section-name="Who's behind it" class="section">
-        <div class="container two-column">
+      <section id="proof" data-section-name="Who's behind it" class="section muted">
+        <div class="container profile-grid">
+          <div class="portrait-card">
+            <img src={portraitPath} alt="Piotr Nadarkiewicz" width="900" height="900" loading="lazy" />
+          </div>
           <div>
             <p class="eyebrow">Who’s behind it</p>
             <h2>{personalBrand}</h2>
-            <p>
-              Senior/principal-level practitioner. MBA. 17+ years, including 4+
-              in banking and regulated finance.
-            </p>
-            <p>
-              Comfortable where documentation quality, audit trails and decision
-              traceability matter. Clients kept anonymous by default.
-            </p>
+            <p>Senior/principal-level practitioner. MBA. 17+ years, including 4+ in banking and regulated finance.</p>
+            <p>Comfortable where documentation quality, audit trails and decision traceability matter. Clients kept anonymous by default.</p>
+            <div class="actions compact-actions">
+              <Button href={linkedInUrl} variant="secondary" target="_blank" rel="noopener noreferrer" gaEvent="outbound_click" gaLabel="linkedin_proof">View LinkedIn</Button>
+              <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLabel="email_proof">Email {contactEmail}</Button>
+            </div>
           </div>
+        </div>
 
+        <div class="container work-grid">
+          <div class="work-card">
+            <p class="eyebrow">How I work</p>
+            <ul class="check-list">
+              <li>I give you the honest read, even when it is inconvenient.</li>
+              <li>I make requirements and decisions explicit enough to survive delivery pressure.</li>
+              <li>I prefer clear scope, clear ownership and visible trade-offs.</li>
+              <li>I work with few clients at a time, so senior attention stays real.</li>
+              <li>I would rather say “not a fit” than over-promise.</li>
+            </ul>
+          </div>
           <div class="proof-list">
-            {proofPoints.map((proof) => (
-              <ProofCard title={proof.title} text={proof.text} />
+            {proofPoints.map((proof) => <ProofCard title={proof.title} text={proof.text} />)}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" data-section-name="Client feedback" class="section testimonials-section">
+        <div class="container">
+          <p class="eyebrow">Client feedback</p>
+          <h2>What tends to change when the work lands.</h2>
+          <div class="testimonial-grid">
+            {testimonials.map((item) => (
+              <figure class="testimonial-card">
+                <blockquote>“{item.quote}”</blockquote>
+                <figcaption>— {item.author}</figcaption>
+              </figure>
             ))}
           </div>
         </div>
@@ -374,33 +374,23 @@ const faqs = [
         <div class="container">
           <p class="eyebrow">Questions</p>
           <h2>Common questions before we talk.</h2>
-
           <div class="faq-list">
-            {faqs.map((item) => (
-              <FaqItem question={item.question} answer={item.answer} />
-            ))}
+            {faqs.map((item) => <FaqItem question={item.question} answer={item.answer} />)}
           </div>
         </div>
       </section>
 
-      <LeadMagnet lang="en" contactEmail={contactEmail} action={leadMagnetAction} />
+      <LeadMagnet lang="en" guideLink={guideLinkEn} bookingLink={bookingLink} />
 
       <section id="contact" data-section-name="Ready?" class="section final-cta">
         <div class="container">
           <p class="eyebrow">Ready?</p>
-          <h2>A 30-minute call, or a fixed-scope Readiness Review — whichever fits.</h2>
+          <h2>A 25-minute call, or a fixed-scope Readiness Review — whichever fits.</h2>
           <p>Either way, you will get an honest read on where the gap is.</p>
-
           <div class="actions">
-            <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="footer">
-              Book a 30-minute call
-            </Button>
-            <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="footer">
-              Start with a Readiness Review
-            </Button>
-            <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLocation="footer_email">
-              Email {contactEmail}
-            </Button>
+            <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="footer">Book a 25-minute call</Button>
+            <Button href={readinessReviewLink} variant="secondary" gaEvent="readiness_review_start" gaLocation="footer">Start with a Readiness Review</Button>
+            <Button href={`mailto:${contactEmail}`} variant="text" gaEvent="outbound_click" gaLabel="footer_email">Email {contactEmail}</Button>
           </div>
         </div>
       </section>
@@ -408,9 +398,22 @@ const faqs = [
 
     <footer class="footer">
       <div class="container footer-content">
-        <span>© {new Date().getFullYear()} {personalBrand}</span>
-        <span>NDA-friendly. Clients anonymous by default.</span>
+        <div>
+          <strong>{personalBrand}</strong><br />
+          Fractional delivery &amp; requirements lead · Poland · B2B
+        </div>
+        <nav aria-label="Footer links">
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+        <span>© {new Date().getFullYear()} {personalBrand}. NDA-friendly. Clients anonymous by default.</span>
       </div>
     </footer>
+
+    <nav class="mobile-sticky-cta" aria-label="Primary actions">
+      <a href={bookingLink} data-ga-event="cta_book_click" data-ga-location="mobile_sticky">Book a call</a>
+      <a href={readinessReviewLink} data-ga-event="readiness_review_start" data-ga-location="mobile_sticky">Readiness Review</a>
+    </nav>
   </div>
 </Layout>

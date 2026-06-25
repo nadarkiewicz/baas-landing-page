@@ -1,12 +1,16 @@
 export const siteConfig = {
   personalBrand: "Piotr Nadarkiewicz",
   offerName: "Fractional delivery & requirements lead",
-  gaMeasurementId: "",
-  contactEmail: "piotr.nadarkiewicz@gmail.com",
-  bookingLink:
-    "mailto:piotr.nadarkiewicz@gmail.com?subject=30-minute%20call%20-%20fractional%20delivery%20and%20requirements%20lead",
-  readinessReviewLink:
-    "mailto:piotr.nadarkiewicz@gmail.com?subject=Readiness%20Review%20-%20fractional%20delivery%20and%20requirements%20lead",
-  leadMagnetAction: "",
-  siteUrl: "https://baas-landing-page.piotr-nadarkiewicz.workers.dev",
+  polishOfferName: "doświadczony lider delivery i wymagań",
+  gaMeasurementId: "G-SZ3LBPFS39",
+  contactEmail: "piotr@nadarkiewicz.com",
+  bookingLink: "https://cal.eu/nadarkiewicz/book-a-25-minute-call",
+  readinessReviewLink: "https://cal.eu/nadarkiewicz/book-a-readiness-review",
+  guideLinkEn: "https://tally.so/r/pb5E4Z",
+  guideLinkPl: "https://tally.so/r/rjgxEN",
+  linkedInUrl: "https://www.linkedin.com/in/nadarkiewicz/",
+  portraitPath: "/piotr-nadarkiewicz.jpg",
+  siteUrl: "https://nadarkiewicz.com",
+  businessName: "Piotr Nadarkiewicz Co do joty",
+  businessCountry: "Poland",
 };

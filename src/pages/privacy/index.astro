@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/Button.astro";
+import LanguageSwitch from "../../components/LanguageSwitch.astro";
+import { siteConfig } from "../../config/site";
+
+const { personalBrand, offerName, contactEmail, bookingLink, linkedInUrl, businessName, businessCountry } = siteConfig;
+---
+
+<Layout title={`Privacy — ${personalBrand}`} description={`Privacy information for ${personalBrand}.`} lang="en">
+  <div class="site-shell">
+    <header class="sticky-header">
+      <a class="brand-lockup" href="/" aria-label={`${personalBrand} home`}>
+        <span class="brand-name">{personalBrand}</span>
+        <span class="brand-offer">{offerName}</span>
+      </a>
+      <div class="header-actions">
+        <LanguageSwitch current="en" />
+        <Button href={bookingLink} variant="primary" gaEvent="cta_book_click" gaLocation="privacy_header">Book a call</Button>
+      </div>
+    </header>
+
+    <main class="privacy-page section">
+      <div class="container content-stack">
+        <p class="eyebrow">Privacy</p>
+        <h1>Privacy information</h1>
+        <p>Last updated: 25 June 2026.</p>
+
+        <h2>Who is responsible for this website</h2>
+        <p>
+          The website is operated by {businessName}, based in {businessCountry}. For privacy questions or requests,
+          contact <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+        </p>
+
+        <h2>What data may be processed</h2>
+        <p>This website may process data in the following situations:</p>
+        <ul class="plain-list">
+          <li>when you book a call or a Readiness Review through Cal.eu;</li>
+          <li>when you request the guide through a Tally form;</li>
+          <li>when you email me directly;</li>
+          <li>when Google Analytics measures how visitors use the website.</li>
+        </ul>
+
+        <h2>Why the data is used</h2>
+        <p>Data is used to respond to enquiries, arrange calls, send requested materials, improve the website, and understand which pages and calls to action are useful.</p>
+
+        <h2>Forms, booking and external tools</h2>
+        <p>
+          Guide requests are handled through Tally. Call booking is handled through Cal.eu. These services may process data according to their own terms and privacy documentation.
+        </p>
+
+        <h2>Google Analytics</h2>
+        <p>
+          This website uses Google Analytics 4 to understand traffic and interactions. Google Analytics may collect information such as page views, device/browser information,
+          approximate location, and interaction events such as CTA clicks. The analytics setup is used to improve the website and evaluate which actions generate qualified enquiries.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          If your data is processed, you can contact me to ask about your data, request correction or deletion, object to processing, or withdraw consent where consent was the basis for processing.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Privacy contact: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div><strong>{personalBrand}</strong><br />Fractional delivery &amp; requirements lead · Poland · B2B</div>
+        <nav aria-label="Footer links">
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="/">Home</a>
+        </nav>
+        <span>© {new Date().getFullYear()} {personalBrand}</span>
+      </div>
+    </footer>
+  </div>
+</Layout>

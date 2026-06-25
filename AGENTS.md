@@ -1,76 +1,50 @@
-# Project instructions for AI coding agents
+# Piotr Nadarkiewicz landing page project instructions
 
-This is an Astro static landing page for Piotr Nadarkiewicz.
+Internal codename: BAaaS. Public brand: Piotr Nadarkiewicz.
 
-The old public name "Business Analyst as a Service (BAaaS)" has been retired. BAaaS may be used only as an internal codename in notes. Do not show BAaaS in public UI, page titles, meta descriptions, buttons, headings, or visible site copy.
+This is an Astro static landing page deployed to Cloudflare Workers static assets.
 
 ## Public positioning
 
-Lead with:
-
-- Piotr Nadarkiewicz
-- Fractional delivery & requirements lead
-- Regulated and fintech teams
-- Fixed-scope products plus retained monthly support
+- Lead with: `Piotr Nadarkiewicz`
+- Offer: `Fractional delivery & requirements lead`
+- Do not use `Business Analyst as a Service` or `BAaaS` in public-facing copy.
+- Keep English at `/` and Polish at `/pl/`.
 
 ## Project structure
 
 - English page: `src/pages/index.astro`
 - Polish page: `src/pages/pl/index.astro`
+- Privacy page: `src/pages/privacy/index.astro`
+- Polish privacy page: `src/pages/pl/privacy/index.astro`
 - Shared layout: `src/layouts/Layout.astro`
 - Shared styles: `src/styles/global.css`
 - Site config: `src/config/site.ts`
-- Reusable components: `src/components/`
+- Portrait: `public/piotr-nadarkiewicz.jpg`
 
 ## Rules
 
-- Keep the site static. Do not add SSR.
-- Keep Google Analytics optional.
-- `gaMeasurementId: ""` must build and work.
-- Do not remove analytics hooks.
-- Do not rename section IDs without updating tracking and `UX_CHECKLIST.md`.
+- Keep Google Analytics safety logic intact.
+- Keep section IDs stable unless analytics is updated.
 - Keep EN and PL pages structurally similar.
-- Do not add external UI frameworks unless explicitly requested.
-- Do not replace the current design system with Tailwind or React unless explicitly requested.
+- Do not add server-side rendering.
+- This should remain a static Astro site.
+- Tally is used for guide requests.
+- Cal.eu is used for booking and Readiness Review.
+- Email is a fallback/contact path only, not the main conversion path.
 
-## Required section IDs
+## Build check
 
-- `hero`
-- `problem`
-- `ways-to-work`
-- `fixed-scope-products`
-- `retained`
-- `pricing`
-- `included`
-- `not-included`
-- `proof`
-- `faq`
-- `lead-magnet`
-- `contact`
+Before suggesting a commit, run:
 
-## Required GA events
+```powershell
+npm run build
+```
 
-- `section_view`
-- `view_hero`
-- `view_pricing`
-- `view_faq`
-- `cta_book_click`
-- `select_product`
-- `readiness_review_start`
-- `select_tier`
-- `lead_magnet_submit`
-- `faq_open`
-- `outbound_click`
+## Deployment
 
-## Before suggesting a commit
-
-Run:
-
-    npm run build
-
-Then commit:
-
-    git status
-    git add .
-    git commit -m "Update landing page"
-    git push
+```powershell
+git add .
+git commit -m "Refine trust and conversion path"
+git push
+```

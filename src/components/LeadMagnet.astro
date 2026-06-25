@@ -1,39 +1,36 @@
 ---
+import Button from "./Button.astro";
+
 type Language = "en" | "pl";
 
 interface Props {
   lang: Language;
-  contactEmail: string;
-  action?: string;
+  guideLink: string;
+  bookingLink: string;
 }
 
-const { lang, contactEmail, action = "" } = Astro.props;
+const { lang, guideLink, bookingLink } = Astro.props;
 
 const copy = {
   en: {
     eyebrow: "Not ready to talk?",
     title: "Take the thinking with you.",
     body: "Get the guide — The hidden cost of unclear requirements — plus a one-page Definition of Ready checklist.",
-    placeholder: "your email",
-    button: "Send it to me",
-    note: "No spam. One useful note a month, unsubscribe anytime.",
-    subject: "Guide request - The hidden cost of unclear requirements",
-    bodyPrefix: "Please send me the guide: The hidden cost of unclear requirements.",
+    guideCta: "Get the guide",
+    bookCta: "Book a call instead",
+    note: "Low-friction fallback. You will be asked only for your email and consent.",
+    gaLocation: "lead_magnet_en",
   },
   pl: {
     eyebrow: "Nie na teraz?",
     title: "Zabierz to ze sobą.",
-    body: "Pobierz przewodnik — Ukryty koszt niejasnych wymagań — i jednostronicową listę Definicji Gotowości.",
-    placeholder: "Twój e-mail",
-    button: "Wyślij mi",
-    note: "Bez spamu. Jedna przydatna wiadomość miesięcznie, w każdej chwili możesz się wypisać.",
-    subject: "Prośba o przewodnik - Ukryty koszt niejasnych wymagań",
-    bodyPrefix: "Proszę o przesłanie przewodnika: Ukryty koszt niejasnych wymagań.",
+    body: "Pobierz przewodnik o ukrytym koszcie niejasnych wymagań oraz jednostronicową listę kontrolną Definition of Ready.",
+    guideCta: "Pobierz przewodnik",
+    bookCta: "Umów rozmowę zamiast tego",
+    note: "Niski próg wejścia. W formularzu proszę tylko o adres e-mail i zgodę.",
+    gaLocation: "lead_magnet_pl",
   },
 }[lang];
-
-const fallbackAction = `mailto:${contactEmail}`;
-const formAction = action || fallbackAction;
 ---
 
 <section id="lead-magnet" data-section-name={copy.title} class="section lead-magnet-section">
@@ -44,60 +41,22 @@ const formAction = action || fallbackAction;
       <p>{copy.body}</p>
     </div>
 
-    <form
-      class="lead-form"
-      action={formAction}
-      method="post"
-      data-lead-magnet-form
-      data-language={lang}
-      data-contact-email={contactEmail}
-      data-email-subject={copy.subject}
-      data-email-body-prefix={copy.bodyPrefix}
-    >
-      <label class="sr-only" for={`lead-email-${lang}`}>{copy.placeholder}</label>
-
-      <input
-        id={`lead-email-${lang}`}
-        type="email"
-        name="email"
-        placeholder={copy.placeholder}
-        required
-      />
-
-      <button type="submit">{copy.button}</button>
-
+    <div class="lead-actions" aria-label={copy.title}>
+      <Button
+        href={guideLink}
+        variant="primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        gaEvent="lead_magnet_start"
+        gaLocation={copy.gaLocation}
+        gaLabel="guide"
+      >
+        {copy.guideCta}
+      </Button>
+      <Button href={bookingLink} variant="secondary" gaEvent="cta_book_click" gaLocation={copy.gaLocation}>
+        {copy.bookCta}
+      </Button>
       <p class="form-note">{copy.note}</p>
-    </form>
+    </div>
   </div>
 </section>
-
-<script is:inline>
-  document.querySelectorAll("[data-lead-magnet-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      const language = form.dataset.language || document.documentElement.lang || "en";
-
-      if (typeof window.gtag === "function") {
-        window.gtag("event", "lead_magnet_submit", {
-          asset: "whitepaper",
-          language,
-          page_path: window.location.pathname,
-        });
-      }
-
-      const action = form.getAttribute("action") || "";
-
-      if (action.startsWith("mailto:")) {
-        event.preventDefault();
-
-        const emailInput = form.querySelector('input[type="email"]');
-        const visitorEmail = emailInput ? emailInput.value : "";
-        const contactEmail = form.dataset.contactEmail;
-        const subject = encodeURIComponent(form.dataset.emailSubject || "Guide request");
-        const bodyPrefix = form.dataset.emailBodyPrefix || "Please send me the guide.";
-        const body = encodeURIComponent(`${bodyPrefix}\n\nVisitor email: ${visitorEmail}`);
-
-        window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-      }
-    });
-  });
-</script>
